@@ -13,7 +13,10 @@ import Rituals from "./pages/Rituals";
 import History from "./pages/History";
 import BonediBaris from "./pages/BonediBaris";
 import MetroRoutes from "./pages/MetroRoutes";
+<<<<<<< HEAD
 import SixDayPlan from "./pages/SixDayPlan";
+=======
+>>>>>>> ad0ef6e (Commit changes via BLACKBOXAI)
 import AreaGuide from "./pages/AreaGuide";
 import Gallery from "./pages/Gallery";
 import Blog from "./pages/Blog";
@@ -35,7 +38,10 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/bonedi-baris" element={<BonediBaris />} />
             <Route path="/metro-routes" element={<MetroRoutes />} />
+<<<<<<< HEAD
             <Route path="/six-day-plan" element={<SixDayPlan />} />
+=======
+>>>>>>> ad0ef6e (Commit changes via BLACKBOXAI)
             <Route path="/area-guide" element={<AreaGuide />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/blog" element={<Blog />} />
