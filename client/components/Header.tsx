@@ -14,10 +14,7 @@ export default function Header() {
     { name: "History", href: "/history" },
     { name: "Bonedi Baris", href: "/bonedi-baris" },
     { name: "Metro Routes", href: "/metro-routes" },
-<<<<<<< HEAD
-    { name: "6-Day Plan", href: "/six-day-plan" },
-=======
->>>>>>> ad0ef6e (Commit changes via BLACKBOXAI)
+    { name: "Owner's Plan", href: "/owners-plan" },
     { name: "Area Guide", href: "/area-guide" },
     { name: "Photo Gallery", href: "/gallery" },
     { name: "Blog", href: "/blog" },
