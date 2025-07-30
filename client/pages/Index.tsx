@@ -212,8 +212,8 @@ export default function Index() {
                 whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" className="bg-white text-festival-orange hover:bg-gray-100 text-xl px-10 py-8 shadow-festival-lg font-bold">
-                  <Sparkles className="w-6 h-6 mr-3" />
+                <Button size="lg" className="bg-white text-festival-orange hover:bg-gray-100 text-lg sm:text-xl px-6 sm:px-10 py-6 sm:py-8 shadow-festival-lg font-bold w-full sm:w-auto">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                   Explore Traditions
                 </Button>
               </motion.div>
@@ -597,7 +597,7 @@ export default function Index() {
                       animate={{ opacity: [0.8, 1, 0.8] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
-                      সর্বমঙ্গলমাঙ্গল্যে শিবে সর্বা��্���সাধিকে
+                      সর্বমঙ্গলমাঙ্গল্যে শিবে সর্বা��্থসাধিকে
                     </motion.p>
                     <motion.p
                       animate={{ opacity: [1, 0.8, 1] }}
