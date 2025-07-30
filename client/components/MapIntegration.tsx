@@ -34,6 +34,7 @@ export default function MapIntegration({
   const [isLoading, setIsLoading] = useState(false);
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [dataSource, setDataSource] = useState<'api' | 'mock'>('mock');
 
   // Mock data for demonstration - in real implementation, this would come from your API
   const mockPlaces: Place[] = [
