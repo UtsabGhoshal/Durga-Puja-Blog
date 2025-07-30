@@ -64,7 +64,8 @@ const ownersPlan: OwnerDay[] = [
     day: 1,
     dayName: "Chaturthi",
     theme: "Covering North Main Kolkata Side today",
-    description: "Starting our journey with the vibrant North Kolkata area, covering traditional and famous pandals around Belgachia and Shyambazar.",
+    description:
+      "Starting our journey with the vibrant North Kolkata area, covering traditional and famous pandals around Belgachia and Shyambazar.",
     zones: ["North Kolkata"],
     totalTime: "Full Day (8-10 hours)",
     color: "from-blue-500 to-indigo-600",
@@ -117,7 +118,8 @@ const ownersPlan: OwnerDay[] = [
     day: 2,
     dayName: "Panchami",
     theme: "Covering Main South",
-    description: "Exploring South Kolkata's prestigious pandals including heritage areas around Kalighat, Alipore, and the famous Deshapriya Park circuit.",
+    description:
+      "Exploring South Kolkata's prestigious pandals including heritage areas around Kalighat, Alipore, and the famous Deshapriya Park circuit.",
     zones: ["South Kolkata"],
     totalTime: "Full Day (9-11 hours)",
     color: "from-emerald-500 to-green-600",
@@ -133,7 +135,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Lake Youth" },
           { name: "Pratipaditya Trikon Park" },
         ],
-        notes: "Start early morning. Beautiful lake views and serene atmosphere.",
+        notes:
+          "Start early morning. Beautiful lake views and serene atmosphere.",
       },
       {
         name: "Kalighat Area",
@@ -168,19 +171,24 @@ const ownersPlan: OwnerDay[] = [
           { name: "Ekdalia Evergreen" },
         ],
         mapUrl: "https://maps.app.goo.gl/JAqLTp2CU7AATrs19",
-        notes: "Bus routes: 13C, 18B/1, 18C, S-131, SD-8, S-62 to Deshapriya Park. The crown jewel area!",
+        notes:
+          "Bus routes: 13C, 18B/1, 18C, S-131, SD-8, S-62 to Deshapriya Park. The crown jewel area!",
       },
     ],
     choices: {
       title: "Evening Options",
-      options: ["Continue to Kasba/Bypass areas", "Return via Sealdah & end the day"],
+      options: [
+        "Continue to Kasba/Bypass areas",
+        "Return via Sealdah & end the day",
+      ],
     },
   },
   {
     day: 3,
     dayName: "Shasti",
     theme: "Covering the Central",
-    description: "Dive into Central Kolkata's heritage with traditional family pujas and historic locations around Sealdah and College Street area.",
+    description:
+      "Dive into Central Kolkata's heritage with traditional family pujas and historic locations around Sealdah and College Street area.",
     zones: ["Central Kolkata"],
     totalTime: "Full Day (8-10 hours)",
     color: "from-purple-500 to-indigo-600",
@@ -213,19 +221,24 @@ const ownersPlan: OwnerDay[] = [
           { name: "Rajabazar Harinath Mukherjee Bari" },
         ],
         mapUrl: "https://maps.app.goo.gl/spUk7Yf934LR4eMJ6",
-        notes: "Rich cultural heritage area. Book shops and academic institutions nearby.",
+        notes:
+          "Rich cultural heritage area. Book shops and academic institutions nearby.",
       },
     ],
     choices: {
       title: "Next Destination",
-      options: ["Head to Kakurgachi area", "Return via Sealdah/Ultadanga/Shyambazar"],
+      options: [
+        "Head to Kakurgachi area",
+        "Return via Sealdah/Ultadanga/Shyambazar",
+      ],
     },
   },
   {
     day: 4,
     dayName: "Saptami",
     theme: "Covering North Side Branch",
-    description: "Exploring the extended North Kolkata circuit including Dum Dum Park, traditional Sovabazar area, and Ultadanga's vibrant pandals.",
+    description:
+      "Exploring the extended North Kolkata circuit including Dum Dum Park, traditional Sovabazar area, and Ultadanga's vibrant pandals.",
     zones: ["North Kolkata Extended"],
     totalTime: "Full Day (9-12 hours)",
     color: "from-red-500 to-pink-600",
@@ -265,7 +278,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Bagbazar Halder Bari" },
         ],
         mapUrl: "https://maps.app.goo.gl/JZLUhCukTwdAqcJX6",
-        notes: "Historic area with traditional family pujas. Amazing craftsmanship at Kumartuli.",
+        notes:
+          "Historic area with traditional family pujas. Amazing craftsmanship at Kumartuli.",
       },
       {
         name: "Ultadanga Gouriberia Flyover",
@@ -291,7 +305,8 @@ const ownersPlan: OwnerDay[] = [
     day: 5,
     dayName: "Ashtami",
     theme: "Covering the heritage Bonedi baris of Kolkata",
-    description: "A special day dedicated to Kolkata's prestigious Bonedi Baris (heritage family pujas) - experience centuries-old traditions and royal celebrations.",
+    description:
+      "A special day dedicated to Kolkata's prestigious Bonedi Baris (heritage family pujas) - experience centuries-old traditions and royal celebrations.",
     zones: ["Heritage Areas"],
     totalTime: "Full Day (8-10 hours)",
     color: "from-yellow-500 to-orange-600",
@@ -314,7 +329,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Maniktala Saha Bari" },
         ],
         mapUrl: "https://maps.app.goo.gl/NvR5DzFpCja3kikA6",
-        notes: "Historic family pujas with 200+ year traditions. Respect photography restrictions.",
+        notes:
+          "Historic family pujas with 200+ year traditions. Respect photography restrictions.",
       },
       {
         name: "Dharmatala SN Banerjee Road",
@@ -326,7 +342,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "New Market Sarbojonin" },
         ],
         mapUrl: "https://maps.app.goo.gl/i4eamFrixrgqxy8T7",
-        notes: "Central location with easy metro access. Historic significance.",
+        notes:
+          "Central location with easy metro access. Historic significance.",
       },
       {
         name: "Bhawanipur Harish Park",
@@ -347,7 +364,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Hazra Park Durgotsab" },
         ],
         mapUrl: "https://maps.app.goo.gl/NB6zaz5E91z9268XA",
-        notes: "Mix of family pujas and community celebrations. Food street nearby.",
+        notes:
+          "Mix of family pujas and community celebrations. Food street nearby.",
       },
     ],
   },
@@ -355,7 +373,8 @@ const ownersPlan: OwnerDay[] = [
     day: 6,
     dayName: "Navami",
     theme: "Covering Remaining South Kolkata",
-    description: "Completing the South Kolkata circuit with extended areas including Santoshpur, Thakurpukur, and other suburban locations.",
+    description:
+      "Completing the South Kolkata circuit with extended areas including Santoshpur, Thakurpukur, and other suburban locations.",
     zones: ["South Kolkata Extended"],
     totalTime: "Full Day (10-12 hours)",
     color: "from-green-500 to-emerald-600",
@@ -440,7 +459,8 @@ const ownersPlan: OwnerDay[] = [
     day: 7,
     dayName: "Dashami",
     theme: "Free Day Events",
-    description: "The final day of festivities - participate in traditional Sindoor Khela, cover missed pandals, and witness the grand immersion ceremonies.",
+    description:
+      "The final day of festivities - participate in traditional Sindoor Khela, cover missed pandals, and witness the grand immersion ceremonies.",
     zones: ["All Areas"],
     totalTime: "Flexible (6-8 hours)",
     color: "from-pink-500 to-rose-600",
@@ -470,7 +490,7 @@ const openGoogleMaps = (url: string) => {
 
 export default function OwnersPlan() {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
-  const [viewMode, setViewMode] = useState<'timeline' | 'grid'>('timeline');
+  const [viewMode, setViewMode] = useState<"timeline" | "grid">("timeline");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
@@ -505,20 +525,24 @@ export default function OwnersPlan() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto px-2">
-              A meticulously planned 7-day journey covering 135+ pandals across Kolkata. Follow my personal route for the ultimate Durga Puja experience.
+              A meticulously planned 7-day journey covering 135+ pandals across
+              Kolkata. Follow my personal route for the ultimate Durga Puja
+              experience.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm font-bold w-full sm:w-auto"
-                onClick={() => setViewMode(viewMode === 'timeline' ? 'grid' : 'timeline')}
+                onClick={() =>
+                  setViewMode(viewMode === "timeline" ? "grid" : "timeline")
+                }
               >
                 <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                {viewMode === 'timeline' ? 'Grid View' : 'Timeline View'}
+                {viewMode === "timeline" ? "Grid View" : "Timeline View"}
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-gradient-to-r from-festival-orange to-festival-saffron hover:from-festival-orange-dark hover:to-festival-saffron-dark text-white font-bold w-full sm:w-auto"
               >
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -539,35 +563,37 @@ export default function OwnersPlan() {
                 label: "Days Planned",
                 icon: <Calendar className="w-8 h-8" />,
                 color: "from-festival-orange to-festival-saffron",
-                description: "Complete festival coverage"
+                description: "Complete festival coverage",
               },
               {
                 value: "135+",
                 label: "Pandals Listed",
                 icon: <Star className="w-8 h-8" />,
                 color: "from-festival-gold to-festival-amber",
-                description: "Across all major areas"
+                description: "Across all major areas",
               },
               {
                 value: "21",
                 label: "Key Areas",
                 icon: <MapPin className="w-8 h-8" />,
                 color: "from-blue-500 to-indigo-600",
-                description: "North, Central & South"
+                description: "North, Central & South",
               },
               {
                 value: "3",
                 label: "Zones",
                 icon: <Compass className="w-8 h-8" />,
                 color: "from-purple-500 to-indigo-600",
-                description: "Comprehensive coverage"
+                description: "Comprehensive coverage",
               },
             ].map((stat, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="text-center mobile-card bg-white rounded-xl sm:rounded-2xl shadow-festival hover:shadow-festival-lg transition-all duration-300 border border-festival-orange/10"
               >
-                <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${stat.color} rounded-full text-white mb-3 sm:mb-4 shadow-lg`}>
+                <div
+                  className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${stat.color} rounded-full text-white mb-3 sm:mb-4 shadow-lg`}
+                >
                   {stat.icon}
                 </div>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-1 sm:mb-2">
@@ -576,9 +602,7 @@ export default function OwnersPlan() {
                 <p className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base mb-1">
                   {stat.label}
                 </p>
-                <p className="text-gray-500 text-xs">
-                  {stat.description}
-                </p>
+                <p className="text-gray-500 text-xs">{stat.description}</p>
               </div>
             ))}
           </div>
@@ -593,25 +617,34 @@ export default function OwnersPlan() {
               My 7-Day Journey Plan
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Carefully curated day-wise itinerary with specific routes, timings, and insider tips
+              Carefully curated day-wise itinerary with specific routes,
+              timings, and insider tips
             </p>
-            
+
             {/* View Toggle */}
             <div className="flex justify-center mb-8">
               <div className="bg-white rounded-full p-1 shadow-lg border border-festival-orange/20">
                 <Button
-                  variant={viewMode === 'timeline' ? 'default' : 'ghost'}
+                  variant={viewMode === "timeline" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('timeline')}
-                  className={viewMode === 'timeline' ? 'bg-gradient-to-r from-festival-orange to-festival-saffron text-white' : ''}
+                  onClick={() => setViewMode("timeline")}
+                  className={
+                    viewMode === "timeline"
+                      ? "bg-gradient-to-r from-festival-orange to-festival-saffron text-white"
+                      : ""
+                  }
                 >
                   Timeline View
                 </Button>
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className={viewMode === 'grid' ? 'bg-gradient-to-r from-festival-orange to-festival-saffron text-white' : ''}
+                  onClick={() => setViewMode("grid")}
+                  className={
+                    viewMode === "grid"
+                      ? "bg-gradient-to-r from-festival-orange to-festival-saffron text-white"
+                      : ""
+                  }
                 >
                   Grid View
                 </Button>
@@ -620,24 +653,30 @@ export default function OwnersPlan() {
           </div>
 
           {/* Timeline View */}
-          {viewMode === 'timeline' && (
+          {viewMode === "timeline" && (
             <div className="max-w-6xl mx-auto">
               {/* Timeline connector */}
               <div className="relative">
                 <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-festival-orange via-festival-saffron to-festival-deep-orange"></div>
-                
+
                 <div className="space-y-8">
                   {ownersPlan.map((day, index) => (
                     <div key={day.day} className="relative">
                       {/* Timeline dot */}
-                      <div className={`absolute left-6 w-4 h-4 bg-gradient-to-r ${day.color} rounded-full border-4 border-white shadow-lg z-10`}></div>
-                      
+                      <div
+                        className={`absolute left-6 w-4 h-4 bg-gradient-to-r ${day.color} rounded-full border-4 border-white shadow-lg z-10`}
+                      ></div>
+
                       {/* Card */}
                       <div className="ml-16">
                         <Card className="overflow-hidden shadow-xl border-0 bg-gradient-to-r from-white to-gray-50 hover:shadow-2xl transition-all duration-300">
                           <CardHeader
                             className={`cursor-pointer bg-gradient-to-r ${day.color} text-white relative overflow-hidden`}
-                            onClick={() => setSelectedDay(selectedDay === day.day ? null : day.day)}
+                            onClick={() =>
+                              setSelectedDay(
+                                selectedDay === day.day ? null : day.day,
+                              )
+                            }
                           >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                             <div className="relative z-10">
@@ -661,14 +700,22 @@ export default function OwnersPlan() {
                                     </p>
                                     <div className="flex flex-wrap gap-2 mt-3">
                                       {day.zones.map((zone, zoneIndex) => (
-                                        <Badge key={zoneIndex} className="bg-white/20 text-white border-white/30 text-xs">
+                                        <Badge
+                                          key={zoneIndex}
+                                          className="bg-white/20 text-white border-white/30 text-xs"
+                                        >
                                           <MapPin className="w-3 h-3 mr-1" />
                                           {zone}
                                         </Badge>
                                       ))}
                                       <Badge className="bg-white/20 text-white border-white/30 text-xs">
                                         <Star className="w-3 h-3 mr-1" />
-                                        {day.locations.reduce((total, location) => total + location.pandals.length, 0)} Pandals
+                                        {day.locations.reduce(
+                                          (total, location) =>
+                                            total + location.pandals.length,
+                                          0,
+                                        )}{" "}
+                                        Pandals
                                       </Badge>
                                     </div>
                                   </div>
@@ -685,88 +732,105 @@ export default function OwnersPlan() {
                           </CardHeader>
 
                           {selectedDay === day.day && (
-                            <CardContent className={`p-6 lg:p-8 ${day.bgColor} border-t-4 border-festival-orange/30`}>
+                            <CardContent
+                              className={`p-6 lg:p-8 ${day.bgColor} border-t-4 border-festival-orange/30`}
+                            >
                               <div className="space-y-6">
                                 {/* Locations */}
                                 <div className="space-y-4">
                                   <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2 mb-4">
                                     <Route className="w-5 h-5 text-festival-orange" />
-                                    Detailed Route ({day.locations.length} stops)
+                                    Detailed Route ({day.locations.length}{" "}
+                                    stops)
                                   </h3>
-                                  
-                                  {day.locations.map((location, locationIndex) => (
-                                    <div key={locationIndex} className="bg-white rounded-xl shadow-lg p-6 border border-festival-orange/20 hover:shadow-xl transition-all duration-300">
-                                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
-                                        <div className="flex items-start gap-4 flex-1">
-                                          <div className={`w-12 h-12 bg-gradient-to-r ${day.color} rounded-full flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0`}>
-                                            <span className="text-lg">{locationIndex + 1}</span>
-                                          </div>
-                                          <div className="flex-1">
-                                            <h4 className="text-xl font-bold text-gray-800 mb-2">
-                                              {location.name}
-                                            </h4>
-                                            {location.exit && (
-                                              <Badge className="bg-blue-100 text-blue-800 mb-2">
-                                                <Navigation className="w-3 h-3 mr-1" />
-                                                Exit: {location.exit}
-                                              </Badge>
-                                            )}
-                                            {location.notes && (
-                                              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg mb-3">
-                                                <div className="flex items-start gap-2">
-                                                  <Info className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
-                                                  <p className="text-sm text-yellow-800 leading-relaxed">
-                                                    {location.notes}
-                                                  </p>
-                                                </div>
-                                              </div>
-                                            )}
-                                          </div>
-                                        </div>
-                                        {location.mapUrl && (
-                                          <Button
-                                            className="bg-gradient-to-r from-festival-orange to-festival-saffron text-white hover:shadow-lg transition-all duration-300"
-                                            onClick={() => openGoogleMaps(location.mapUrl!)}
-                                          >
-                                            <Navigation className="w-4 h-4 mr-2" />
-                                            View Route
-                                            <ExternalLink className="w-3 h-3 ml-2" />
-                                          </Button>
-                                        )}
-                                      </div>
 
-                                      <div>
-                                        <h5 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                          <Star className="w-4 h-4 text-festival-orange" />
-                                          Pandals to Visit ({location.pandals.length})
-                                        </h5>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                                          {location.pandals.map((pandal, pandalIndex) => (
+                                  {day.locations.map(
+                                    (location, locationIndex) => (
+                                      <div
+                                        key={locationIndex}
+                                        className="bg-white rounded-xl shadow-lg p-6 border border-festival-orange/20 hover:shadow-xl transition-all duration-300"
+                                      >
+                                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+                                          <div className="flex items-start gap-4 flex-1">
                                             <div
-                                              key={pandalIndex}
-                                              className="group p-4 bg-gradient-to-br from-festival-orange/5 to-festival-saffron/5 rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 hover:shadow-md transition-all duration-300"
+                                              className={`w-12 h-12 bg-gradient-to-r ${day.color} rounded-full flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0`}
                                             >
-                                              <div className="flex items-start gap-3">
-                                                <div className="w-6 h-6 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">
-                                                  {pandalIndex + 1}
-                                                </div>
-                                                <div className="flex-1">
-                                                  <span className="text-sm font-semibold text-gray-800 group-hover:text-festival-orange transition-colors">
-                                                    {pandal.name}
-                                                  </span>
-                                                  {pandal.area && (
-                                                    <p className="text-xs text-gray-500 mt-1">
-                                                      {pandal.area}
-                                                    </p>
-                                                  )}
-                                                </div>
-                                              </div>
+                                              <span className="text-lg">
+                                                {locationIndex + 1}
+                                              </span>
                                             </div>
-                                          ))}
+                                            <div className="flex-1">
+                                              <h4 className="text-xl font-bold text-gray-800 mb-2">
+                                                {location.name}
+                                              </h4>
+                                              {location.exit && (
+                                                <Badge className="bg-blue-100 text-blue-800 mb-2">
+                                                  <Navigation className="w-3 h-3 mr-1" />
+                                                  Exit: {location.exit}
+                                                </Badge>
+                                              )}
+                                              {location.notes && (
+                                                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg mb-3">
+                                                  <div className="flex items-start gap-2">
+                                                    <Info className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
+                                                    <p className="text-sm text-yellow-800 leading-relaxed">
+                                                      {location.notes}
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              )}
+                                            </div>
+                                          </div>
+                                          {location.mapUrl && (
+                                            <Button
+                                              className="bg-gradient-to-r from-festival-orange to-festival-saffron text-white hover:shadow-lg transition-all duration-300"
+                                              onClick={() =>
+                                                openGoogleMaps(location.mapUrl!)
+                                              }
+                                            >
+                                              <Navigation className="w-4 h-4 mr-2" />
+                                              View Route
+                                              <ExternalLink className="w-3 h-3 ml-2" />
+                                            </Button>
+                                          )}
+                                        </div>
+
+                                        <div>
+                                          <h5 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                            <Star className="w-4 h-4 text-festival-orange" />
+                                            Pandals to Visit (
+                                            {location.pandals.length})
+                                          </h5>
+                                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                            {location.pandals.map(
+                                              (pandal, pandalIndex) => (
+                                                <div
+                                                  key={pandalIndex}
+                                                  className="group p-4 bg-gradient-to-br from-festival-orange/5 to-festival-saffron/5 rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 hover:shadow-md transition-all duration-300"
+                                                >
+                                                  <div className="flex items-start gap-3">
+                                                    <div className="w-6 h-6 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">
+                                                      {pandalIndex + 1}
+                                                    </div>
+                                                    <div className="flex-1">
+                                                      <span className="text-sm font-semibold text-gray-800 group-hover:text-festival-orange transition-colors">
+                                                        {pandal.name}
+                                                      </span>
+                                                      {pandal.area && (
+                                                        <p className="text-xs text-gray-500 mt-1">
+                                                          {pandal.area}
+                                                        </p>
+                                                      )}
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              ),
+                                            )}
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  ))}
+                                    ),
+                                  )}
                                 </div>
 
                                 {/* Choices Section */}
@@ -777,16 +841,21 @@ export default function OwnersPlan() {
                                       {day.choices.title}
                                     </h4>
                                     <div className="space-y-3">
-                                      {day.choices.options.map((option, idx) => (
-                                        <div key={idx} className="flex items-start gap-3 p-4 bg-white rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 hover:shadow-md transition-all duration-300">
-                                          <div className="w-8 h-8 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 mt-0.5">
-                                            {String.fromCharCode(65 + idx)}
+                                      {day.choices.options.map(
+                                        (option, idx) => (
+                                          <div
+                                            key={idx}
+                                            className="flex items-start gap-3 p-4 bg-white rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 hover:shadow-md transition-all duration-300"
+                                          >
+                                            <div className="w-8 h-8 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 mt-0.5">
+                                              {String.fromCharCode(65 + idx)}
+                                            </div>
+                                            <span className="text-gray-800 font-medium leading-relaxed">
+                                              {option}
+                                            </span>
                                           </div>
-                                          <span className="text-gray-800 font-medium leading-relaxed">
-                                            {option}
-                                          </span>
-                                        </div>
-                                      ))}
+                                        ),
+                                      )}
                                     </div>
                                   </div>
                                 )}
@@ -805,7 +874,9 @@ export default function OwnersPlan() {
                                     </p>
                                     <Button
                                       className="bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
-                                      onClick={() => (window.location.href = "/contact")}
+                                      onClick={() =>
+                                        (window.location.href = "/contact")
+                                      }
                                     >
                                       <Users className="w-5 h-5 mr-2" />
                                       Get Personal Guidance
@@ -825,11 +896,16 @@ export default function OwnersPlan() {
           )}
 
           {/* Grid View */}
-          {viewMode === 'grid' && (
+          {viewMode === "grid" && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {ownersPlan.map((day) => (
-                <Card key={day.day} className="overflow-hidden shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 hover:shadow-xl transition-all duration-300">
-                  <CardHeader className={`bg-gradient-to-r ${day.color} text-white`}>
+                <Card
+                  key={day.day}
+                  className="overflow-hidden shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 hover:shadow-xl transition-all duration-300"
+                >
+                  <CardHeader
+                    className={`bg-gradient-to-r ${day.color} text-white`}
+                  >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white font-bold">
                         {day.icon}
@@ -854,23 +930,31 @@ export default function OwnersPlan() {
                     <div className="space-y-3">
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-gray-500">Areas:</span>
-                        <span className="font-medium">{day.zones.join(", ")}</span>
+                        <span className="font-medium">
+                          {day.zones.join(", ")}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-gray-500">Locations:</span>
-                        <span className="font-medium">{day.locations.length}</span>
+                        <span className="font-medium">
+                          {day.locations.length}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-gray-500">Pandals:</span>
                         <span className="font-medium">
-                          {day.locations.reduce((total, location) => total + location.pandals.length, 0)}
+                          {day.locations.reduce(
+                            (total, location) =>
+                              total + location.pandals.length,
+                            0,
+                          )}
                         </span>
                       </div>
                     </div>
                     <Button
                       className="w-full mt-4 bg-gradient-to-r from-festival-orange to-festival-saffron text-white"
                       onClick={() => {
-                        setViewMode('timeline');
+                        setViewMode("timeline");
                         setSelectedDay(day.day);
                       }}
                     >
@@ -892,21 +976,23 @@ export default function OwnersPlan() {
                 Complete Durga Puja Experience
               </h3>
               <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed mb-6">
-                This comprehensive 7-day plan covers every major area of Kolkata, ensuring you don't miss any significant pandals. 
-                From heritage Bonedi Baris to modern themed pandals, experience the complete spectrum of Durga Puja celebrations.
+                This comprehensive 7-day plan covers every major area of
+                Kolkata, ensuring you don't miss any significant pandals. From
+                heritage Bonedi Baris to modern themed pandals, experience the
+                complete spectrum of Durga Puja celebrations.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gradient-to-r from-festival-orange to-festival-saffron text-white font-bold"
                   onClick={() => (window.location.href = "/contact")}
                 >
                   <Users className="w-5 h-5 mr-2" />
                   Get Personal Guide
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-2 border-festival-orange text-festival-orange hover:bg-festival-orange hover:text-white"
                 >
                   <ExternalLink className="w-5 h-5 mr-2" />
