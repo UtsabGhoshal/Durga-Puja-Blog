@@ -162,7 +162,7 @@ export default function Index() {
             >
               <Badge className="bg-white/20 text-white border-white/30 text-xl px-6 py-3 shadow-glow animate-pulse-slow backdrop-blur-sm">
                 <Crown className="w-5 h-5 mr-2" />
-                শুভ দুর্গা পূজা ২০২৫
+                শুভ দুর্গা প��জা ২০২৫
               </Badge>
             </motion.div>
             
@@ -192,8 +192,8 @@ export default function Index() {
               </motion.span>
             </motion.h1>
             
-            <motion.p 
-              className="text-xl md:text-3xl mb-12 text-white leading-relaxed max-w-3xl mx-auto drop-shadow-md"
+            <motion.p
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 sm:mb-12 text-white leading-relaxed max-w-3xl mx-auto drop-shadow-md px-4 sm:px-0"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 30, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -597,7 +597,7 @@ export default function Index() {
                       animate={{ opacity: [0.8, 1, 0.8] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
-                      সর্বমঙ্গলমাঙ্গল্যে শিবে সর্বা��্থসাধিকে
+                      সর্���মঙ্গলমাঙ্গল্যে শিবে সর্বা��্থসাধিকে
                     </motion.p>
                     <motion.p
                       animate={{ opacity: [1, 0.8, 1] }}
