@@ -162,7 +162,7 @@ export default function Index() {
             >
               <Badge className="bg-white/20 text-white border-white/30 text-xl px-6 py-3 shadow-glow animate-pulse-slow backdrop-blur-sm">
                 <Crown className="w-5 h-5 mr-2" />
-                শুভ দুর্গা প��জা ২০২৫
+                শুভ দুর্গা পূজা ২০২৫
               </Badge>
             </motion.div>
             
@@ -202,8 +202,8 @@ export default function Index() {
               to modern celebrations. Discover A-Z information about Bengal's grandest festival.
             </motion.p>
             
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center"
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4 sm:px-0"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 30, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 1 }}
@@ -597,7 +597,7 @@ export default function Index() {
                       animate={{ opacity: [0.8, 1, 0.8] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
-                      সর্���মঙ্গলমাঙ্গল্যে শিবে সর্বা��্থসাধিকে
+                      সর্বমঙ্গলমাঙ্গল্যে শিবে সর্বা��্���সাধিকে
                     </motion.p>
                     <motion.p
                       animate={{ opacity: [1, 0.8, 1] }}
