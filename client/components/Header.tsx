@@ -182,8 +182,9 @@ export default function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-white/20 hover:text-festival-gold transition-all duration-300 p-2"
+              className="text-white hover:bg-white/20 hover:text-festival-gold transition-all duration-300 p-3 min-h-[44px] min-w-[44px]"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               <AnimatePresence mode="wait">
                 {isMenuOpen ? (
