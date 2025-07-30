@@ -24,24 +24,24 @@ export default function Header() {
 
   const logoVariants = {
     initial: { scale: 1, rotate: 0 },
-    hover: { 
-      scale: 1.05, 
+    hover: {
+      scale: 1.05,
       rotate: [0, -5, 5, 0],
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   const navItemVariants = {
     initial: { y: 0, scale: 1 },
-    hover: { 
-      y: -2, 
+    hover: {
+      y: -2,
       scale: 1.05,
-      transition: { 
-        type: "spring", 
-        stiffness: 400, 
-        damping: 10 
-      }
-    }
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
+      },
+    },
   };
 
   const mobileMenuVariants = {
@@ -50,17 +50,17 @@ export default function Header() {
       height: 0,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     open: {
       opacity: 1,
       height: "auto",
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const mobileItemVariants = {
@@ -72,13 +72,13 @@ export default function Header() {
         delay: i * 0.05,
         type: "spring",
         stiffness: 300,
-        damping: 20
-      }
-    })
+        damping: 20,
+      },
+    }),
   };
 
   return (
-    <motion.header 
+    <motion.header
       className="bg-gradient-to-r from-festival-orange via-festival-saffron to-festival-deep-orange shadow-festival-lg sticky top-0 z-50 backdrop-blur-sm"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -86,18 +86,21 @@ export default function Header() {
     >
       {/* Decorative top border */}
       <div className="h-1 bg-gradient-to-r from-festival-gold via-festival-amber to-festival-gold"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
+        <div className="flex items-center justify-between h-16 sm:h-18 max-w-full overflow-hidden">
           {/* Logo */}
           <motion.div
             variants={logoVariants}
             initial="initial"
             whileHover="hover"
           >
-            <Link to="/" className="flex items-center space-x-4 group">
-              <motion.div 
-                className="relative w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden"
+            <Link
+              to="/"
+              className="flex items-center space-x-2 sm:space-x-4 group min-w-0 flex-shrink-0"
+            >
+              <motion.div
+                className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0"
                 whileHover={{ boxShadow: "0 0 25px rgba(255, 215, 0, 0.6)" }}
                 transition={{ duration: 0.3 }}
               >
@@ -106,32 +109,34 @@ export default function Header() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 />
-                <span className="text-festival-orange text-2xl font-bold relative z-10">দু</span>
+                <span className="text-festival-orange text-lg sm:text-2xl font-bold relative z-10">
+                  দু
+                </span>
                 <motion.div
                   className="absolute top-1 right-1"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.7, 1, 0.7]
+                    opacity: [0.7, 1, 0.7],
                   }}
-                  transition={{ 
-                    duration: 2, 
+                  transition={{
+                    duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 >
-                  <Sparkles className="w-3 h-3 text-festival-gold" />
+                  <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-festival-gold" />
                 </motion.div>
               </motion.div>
-              <div className="text-white">
-                <motion.h1 
-                  className="text-xl font-bold bg-gradient-to-r from-white to-festival-gold bg-clip-text text-transparent"
+              <div className="text-white min-w-0">
+                <motion.h1
+                  className="text-lg sm:text-xl font-bold bg-gradient-to-r from-white to-festival-gold bg-clip-text text-transparent truncate"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
                   Durga Puja Kolkata
                 </motion.h1>
-                <motion.p 
-                  className="text-xs opacity-90 text-festival-gold-light"
+                <motion.p
+                  className="text-xs opacity-90 text-festival-gold-light hidden sm:block"
                   initial={{ opacity: 0.7 }}
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 3, repeat: Infinity }}
@@ -175,10 +180,7 @@ export default function Header() {
           </nav>
 
           {/* Mobile menu button */}
-          <motion.div
-            className="lg:hidden"
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div className="lg:hidden" whileTap={{ scale: 0.95 }}>
             <Button
               variant="ghost"
               size="sm"
@@ -236,7 +238,7 @@ export default function Header() {
                     >
                       <Link
                         to={item.href}
-                        className="group relative text-white hover:text-festival-gold transition-all duration-300 py-4 px-4 rounded-lg block overflow-hidden min-h-[48px] flex items-center"
+                        className="group relative text-white hover:text-festival-gold transition-all duration-300 py-3 px-4 rounded-lg block overflow-hidden min-h-[48px] flex items-center text-sm font-medium"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <motion.div
@@ -251,12 +253,12 @@ export default function Header() {
                           whileHover={{ scaleY: 1 }}
                           transition={{ duration: 0.3 }}
                         />
-                        <motion.span 
+                        <motion.span
                           className="relative z-10 flex items-center space-x-2"
                           whileHover={{ x: 4 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <span>{item.name}</span>
+                          <span className="truncate">{item.name}</span>
                           <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             whileHover={{ opacity: 1, x: 0 }}
@@ -276,7 +278,7 @@ export default function Header() {
       </div>
 
       {/* Decorative bottom glow */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-festival-gold to-transparent opacity-50"
         animate={{ opacity: [0.3, 0.7, 0.3] }}
         transition={{ duration: 3, repeat: Infinity }}

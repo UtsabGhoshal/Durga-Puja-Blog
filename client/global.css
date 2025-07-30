@@ -106,7 +106,9 @@
 
   /* Ensure proper touch targets on mobile */
   @media (max-width: 768px) {
-    button, a, [role="button"] {
+    button,
+    a,
+    [role="button"] {
       min-height: 44px;
       min-width: 44px;
     }
@@ -120,5 +122,44 @@
   /* Prevent horizontal scroll */
   body {
     overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  /* Mobile responsive utilities */
+  .mobile-safe {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .mobile-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .mobile-heading {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .mobile-hero {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  /* Prevent content overflow */
+  .mobile-container {
+    @apply max-w-full overflow-hidden;
+  }
+
+  /* Stack elements properly on mobile */
+  .mobile-stack {
+    @apply flex flex-col gap-2 sm:gap-4;
+  }
+
+  /* Mobile spacing */
+  .mobile-spacing {
+    @apply py-4 sm:py-6 lg:py-8;
+  }
+
+  /* Mobile card spacing */
+  .mobile-card {
+    @apply p-4 sm:p-6 lg:p-8;
   }
 }
