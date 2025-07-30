@@ -117,12 +117,14 @@ export default function MapIntegration({
             phone: `+91 98765 432${10 + index}`
           }));
           setPlaces(processedPlaces);
+          setDataSource('api');
         } else {
           // Fallback to filtered mock data
           setPlaces(mockPlaces.filter(place =>
             place.name.toLowerCase().includes(query.toLowerCase()) ||
             place.category.toLowerCase().includes(query.toLowerCase())
           ));
+          setDataSource('mock');
         }
       } else {
         console.warn('API response not ok, using mock data');
