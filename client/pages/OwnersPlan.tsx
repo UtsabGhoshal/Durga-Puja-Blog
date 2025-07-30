@@ -717,13 +717,14 @@ export default function OwnersPlan() {
                     </div>
                   </CardHeader>
 
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     {selectedDay === day.day && (
                       <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
+                        initial={isMobile ? { opacity: 0 } : { opacity: 0, height: 0 }}
+                        animate={isMobile ? { opacity: 1 } : { opacity: 1, height: "auto" }}
+                        exit={isMobile ? { opacity: 0 } : { opacity: 0, height: 0 }}
+                        transition={{ duration: isMobile ? 0.2 : 0.3 }}
+                        style={{ overflow: 'hidden' }}
                       >
                         <CardContent className="mobile-card sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50/80 to-festival-orange/5">
                           <div className="mobile-stack sm:space-y-6 lg:space-y-8">
