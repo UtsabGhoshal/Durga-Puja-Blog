@@ -726,7 +726,7 @@ export default function OwnersPlan() {
                         transition={{ duration: isMobile ? 0.2 : 0.3 }}
                         style={{ overflow: 'hidden' }}
                       >
-                        <CardContent className="mobile-card sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50/80 to-festival-orange/5">
+                        <CardContent className="mobile-card sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50/80 to-festival-orange/5 overflow-x-hidden">
                           <div className="mobile-stack sm:space-y-6 lg:space-y-8">
                             {/* Locations - Mobile Optimized */}
                             <div className="mobile-stack sm:space-y-4 lg:space-y-6">
