@@ -104,12 +104,13 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Background Image */}
-      <motion.section 
+      <motion.section
         ref={heroRef}
-        className="relative h-screen bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-gold text-white overflow-hidden"
+        className="relative min-h-screen h-screen bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-gold text-white overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHeroInView ? 1 : 0 }}
         transition={{ duration: 1 }}
+        style={{ minHeight: '100svh' }}
       >
         {/* Background Image */}
         <div className="absolute inset-0">
@@ -152,8 +153,8 @@ export default function Index() {
           />
         </div>
 
-        <div className="relative z-20 container mx-auto px-4 py-24 h-full flex items-center">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 h-full flex items-center">
+          <div className="max-w-4xl mx-auto text-center w-full">
             <motion.div 
               className="mb-8"
               initial={{ y: 30, opacity: 0 }}
@@ -166,8 +167,8 @@ export default function Index() {
               </Badge>
             </motion.div>
             
-            <motion.h1 
-              className="text-5xl md:text-8xl font-bold mb-8 leading-tight"
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-4 sm:px-0"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 50, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -192,8 +193,8 @@ export default function Index() {
               </motion.span>
             </motion.h1>
             
-            <motion.p 
-              className="text-xl md:text-3xl mb-12 text-white leading-relaxed max-w-3xl mx-auto drop-shadow-md"
+            <motion.p
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 sm:mb-12 text-white leading-relaxed max-w-3xl mx-auto drop-shadow-md px-4 sm:px-0"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 30, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -202,8 +203,8 @@ export default function Index() {
               to modern celebrations. Discover A-Z information about Bengal's grandest festival.
             </motion.p>
             
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center"
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4 sm:px-0"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 30, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 1 }}
@@ -212,8 +213,8 @@ export default function Index() {
                 whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" className="bg-white text-festival-orange hover:bg-gray-100 text-xl px-10 py-8 shadow-festival-lg font-bold">
-                  <Sparkles className="w-6 h-6 mr-3" />
+                <Button size="lg" className="bg-white text-festival-orange hover:bg-gray-100 text-lg sm:text-xl px-6 sm:px-10 py-6 sm:py-8 shadow-festival-lg font-bold w-full sm:w-auto">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                   Explore Traditions
                 </Button>
               </motion.div>
@@ -221,8 +222,8 @@ export default function Index() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-xl px-10 py-8 backdrop-blur-sm font-bold">
-                  <Camera className="w-6 h-6 mr-3" />
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg sm:text-xl px-6 sm:px-10 py-6 sm:py-8 backdrop-blur-sm font-bold w-full sm:w-auto">
+                  <Camera className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                   View Gallery
                 </Button>
               </motion.div>
@@ -597,7 +598,7 @@ export default function Index() {
                       animate={{ opacity: [0.8, 1, 0.8] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
-                      সর্বমঙ্গলমাঙ্গল্যে শিবে সর্বা��্থসাধিকে
+                      সর্বমঙ্গলমাঙ্গল্যে শ���বে সর্বা��্থসাধিকে
                     </motion.p>
                     <motion.p
                       animate={{ opacity: [1, 0.8, 1] }}

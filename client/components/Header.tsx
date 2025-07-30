@@ -87,8 +87,8 @@ export default function Header() {
       {/* Decorative top border */}
       <div className="h-1 bg-gradient-to-r from-festival-gold via-festival-amber to-festival-gold"></div>
       
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-18">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-18">
           {/* Logo */}
           <motion.div
             variants={logoVariants}
@@ -182,8 +182,9 @@ export default function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-white/20 hover:text-festival-gold transition-all duration-300 p-2"
+              className="text-white hover:bg-white/20 hover:text-festival-gold transition-all duration-300 p-3 min-h-[44px] min-w-[44px]"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               <AnimatePresence mode="wait">
                 {isMenuOpen ? (
@@ -220,10 +221,10 @@ export default function Header() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="lg:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden bg-gradient-to-r from-festival-orange via-festival-saffron to-festival-deep-orange"
             >
               <div className="py-4 border-t border-white/20">
-                <nav className="flex flex-col space-y-2">
+                <nav className="flex flex-col space-y-1">
                   {navItems.map((item, index) => (
                     <motion.div
                       key={item.name}
@@ -235,7 +236,7 @@ export default function Header() {
                     >
                       <Link
                         to={item.href}
-                        className="group relative text-white hover:text-festival-gold transition-all duration-300 py-3 px-4 rounded-lg block overflow-hidden"
+                        className="group relative text-white hover:text-festival-gold transition-all duration-300 py-4 px-4 rounded-lg block overflow-hidden min-h-[48px] flex items-center"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <motion.div
