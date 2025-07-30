@@ -88,7 +88,7 @@ export default function Header() {
       <div className="h-1 bg-gradient-to-r from-festival-gold via-festival-amber to-festival-gold"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
+        <div className="flex items-center justify-between h-16 sm:h-18 max-w-full overflow-hidden">
           {/* Logo */}
           <motion.div
             variants={logoVariants}
