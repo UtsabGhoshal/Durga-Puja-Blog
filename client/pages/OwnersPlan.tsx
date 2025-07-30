@@ -437,6 +437,7 @@ export default function OwnersPlan() {
   const [selectedDay, setSelectedDay] = useState<number | null>(1);
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true });
+  const isMobile = useMobile();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
