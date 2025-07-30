@@ -153,8 +153,8 @@ export default function Index() {
           />
         </div>
 
-        <div className="relative z-20 container mx-auto px-4 py-24 h-full flex items-center">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 h-full flex items-center">
+          <div className="max-w-4xl mx-auto text-center w-full">
             <motion.div 
               className="mb-8"
               initial={{ y: 30, opacity: 0 }}
@@ -598,7 +598,7 @@ export default function Index() {
                       animate={{ opacity: [0.8, 1, 0.8] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
-                      সর্বমঙ্গলমাঙ্গল্যে শিবে সর্বা��্থসাধিকে
+                      সর্বমঙ্গলমাঙ্গল্যে শ���বে সর্বা��্থসাধিকে
                     </motion.p>
                     <motion.p
                       animate={{ opacity: [1, 0.8, 1] }}
