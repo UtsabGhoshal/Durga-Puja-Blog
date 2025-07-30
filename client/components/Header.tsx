@@ -95,9 +95,9 @@ export default function Header() {
             initial="initial"
             whileHover="hover"
           >
-            <Link to="/" className="flex items-center space-x-4 group">
-              <motion.div 
-                className="relative w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden"
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-4 group min-w-0 flex-shrink-0">
+              <motion.div
+                className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0"
                 whileHover={{ boxShadow: "0 0 25px rgba(255, 215, 0, 0.6)" }}
                 transition={{ duration: 0.3 }}
               >
@@ -106,32 +106,32 @@ export default function Header() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 />
-                <span className="text-festival-orange text-2xl font-bold relative z-10">দু</span>
+                <span className="text-festival-orange text-lg sm:text-2xl font-bold relative z-10">দু</span>
                 <motion.div
                   className="absolute top-1 right-1"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.2, 1],
                     opacity: [0.7, 1, 0.7]
                   }}
-                  transition={{ 
-                    duration: 2, 
+                  transition={{
+                    duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 >
-                  <Sparkles className="w-3 h-3 text-festival-gold" />
+                  <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-festival-gold" />
                 </motion.div>
               </motion.div>
-              <div className="text-white">
-                <motion.h1 
-                  className="text-xl font-bold bg-gradient-to-r from-white to-festival-gold bg-clip-text text-transparent"
+              <div className="text-white min-w-0">
+                <motion.h1
+                  className="text-lg sm:text-xl font-bold bg-gradient-to-r from-white to-festival-gold bg-clip-text text-transparent truncate"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
                   Durga Puja Kolkata
                 </motion.h1>
-                <motion.p 
-                  className="text-xs opacity-90 text-festival-gold-light"
+                <motion.p
+                  className="text-xs opacity-90 text-festival-gold-light hidden sm:block"
                   initial={{ opacity: 0.7 }}
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 3, repeat: Infinity }}
