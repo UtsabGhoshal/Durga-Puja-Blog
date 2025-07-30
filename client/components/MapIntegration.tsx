@@ -232,9 +232,20 @@ export default function MapIntegration({
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
               >
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                  Found {places.length} places near you
-                </h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-gray-800">
+                    Found {places.length} places near you
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      dataSource === 'api'
+                        ? 'bg-green-100 text-green-700 border border-green-200'
+                        : 'bg-yellow-100 text-yellow-700 border border-yellow-200'
+                    }`}>
+                      {dataSource === 'api' ? '🌐 Live Data' : '📱 Sample Data'}
+                    </div>
+                  </div>
+                </div>
                 <div className="space-y-3 max-h-96 overflow-y-auto">
                   {places.map((place, index) => (
                     <motion.div
