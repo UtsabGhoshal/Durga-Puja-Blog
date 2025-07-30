@@ -834,9 +834,9 @@ export default function OwnersPlan() {
                             {day.choices && (
                               <motion.div
                                 className="mobile-card bg-gradient-to-r from-festival-gold/10 to-festival-saffron/10 rounded-lg sm:rounded-xl border border-festival-orange/20"
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={isMobile ? { opacity: 0 } : { opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5 }}
+                                transition={{ duration: isMobile ? 0.2 : 0.5 }}
                               >
                                 <h4 className="font-bold text-festival-orange mb-3 sm:mb-4 flex items-center gap-2 text-sm sm:text-base">
                                   <Route className="w-4 h-4 sm:w-5 sm:h-5" />
