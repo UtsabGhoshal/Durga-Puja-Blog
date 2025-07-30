@@ -166,8 +166,8 @@ export default function Index() {
               </Badge>
             </motion.div>
             
-            <motion.h1 
-              className="text-5xl md:text-8xl font-bold mb-8 leading-tight"
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-4 sm:px-0"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 50, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
