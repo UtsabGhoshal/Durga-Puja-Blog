@@ -223,7 +223,7 @@ export default function Header() {
               className="lg:hidden overflow-hidden bg-gradient-to-r from-festival-orange via-festival-saffron to-festival-deep-orange"
             >
               <div className="py-4 border-t border-white/20">
-                <nav className="flex flex-col space-y-2">
+                <nav className="flex flex-col space-y-1">
                   {navItems.map((item, index) => (
                     <motion.div
                       key={item.name}
