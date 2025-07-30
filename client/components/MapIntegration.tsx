@@ -220,6 +220,16 @@ export default function MapIntegration({
               <h3 className="text-xl font-semibold text-gray-700 mb-2">Interactive Map</h3>
               <p className="text-gray-500">Google Maps integration will display here</p>
               <p className="text-sm text-gray-400 mt-2">Showing pandals near Kolkata ({latitude.toFixed(4)}, {longitude.toFixed(4)})</p>
+
+              {/* Status message for map functionality */}
+              <div className="mt-4 p-3 bg-white/80 rounded-lg shadow-sm max-w-md mx-auto">
+                <p className="text-xs text-gray-600">
+                  {dataSource === 'api' ?
+                    '✅ Connected to live map data' :
+                    '📍 Using sample data - map search is functional'
+                  }
+                </p>
+              </div>
             </div>
           </div>
 
