@@ -601,25 +601,25 @@ export default function AreaGuide() {
                     { icon: <Search className="w-5 h-5" />, title: "Search Pandals", desc: "Find specific pandals in your area", color: "from-blue-500 to-blue-600" },
                     { icon: <Users className="w-5 h-5" />, title: "Plan Your Route", desc: "Visit multiple pandals in the same locality", color: "from-emerald-500 to-green-600" }
                   ].map((step, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
-                      className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-gray-50 to-blue-50 hover:from-blue-50 hover:to-indigo-50 transition-all duration-300"
+                      className="flex items-start gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br from-gray-50 to-blue-50 hover:from-blue-50 hover:to-indigo-50 transition-all duration-300"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      whileHover={{ scale: 1.02 }}
+                      whileHover={{ scale: 1.01 }}
                     >
-                      <motion.div 
-                        className={`p-2 bg-gradient-to-r ${step.color} rounded-lg text-white shadow-md mt-1`}
-                        whileHover={{ scale: 1.1 }}
+                      <motion.div
+                        className={`p-2 bg-gradient-to-r ${step.color} rounded-lg text-white shadow-md mt-1 flex-shrink-0`}
+                        whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.2 }}
                       >
-                        {step.icon}
+                        <div className="w-4 h-4 sm:w-5 sm:h-5">{step.icon}</div>
                       </motion.div>
-                      <div>
-                        <p className="font-semibold text-gray-800 mb-1">{step.title}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                      <div className="min-w-0">
+                        <p className="font-semibold text-gray-800 mb-1 text-sm sm:text-base">{step.title}</p>
+                        <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{step.desc}</p>
                       </div>
                     </motion.div>
                   ))}
