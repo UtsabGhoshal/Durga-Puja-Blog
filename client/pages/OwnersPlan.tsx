@@ -796,15 +796,15 @@ export default function OwnersPlan() {
                                       {location.pandals.map(
                                         (pandal, pandalIndex) => (
                                           <motion.div
-                                            key={pandalIndex}
+                                            key={`${locationIndex}-${pandalIndex}-${pandal.name}`}
                                             className="p-2 sm:p-3 bg-gradient-to-r from-festival-orange/5 to-festival-saffron/5 rounded-md sm:rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 transition-all duration-300"
-                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            initial={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{
-                                              duration: 0.3,
-                                              delay: pandalIndex * 0.02,
+                                              duration: isMobile ? 0.1 : 0.3,
+                                              delay: isMobile ? 0 : pandalIndex * 0.02,
                                             }}
-                                            whileHover={{
+                                            whileHover={isMobile ? {} : {
                                               scale: 1.01,
                                               boxShadow:
                                                 "0 4px 12px rgba(255, 107, 53, 0.15)",
