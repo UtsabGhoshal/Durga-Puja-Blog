@@ -11,7 +11,6 @@ import {
   Calendar,
   MapPin,
   Navigation,
-  ExternalLink,
   Clock,
   Star,
   Route,
@@ -21,9 +20,13 @@ import {
   Users,
   ChevronDown,
   ChevronUp,
+  ExternalLink,
+  Info,
+  Target,
+  Compass,
+  Globe,
 } from "lucide-react";
-import { useState, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState } from "react";
 
 interface PandalLocation {
   name: string;
@@ -50,7 +53,10 @@ interface OwnerDay {
   };
   totalTime?: string;
   color: string;
+  bgColor: string;
   icon: any;
+  specialNote?: string;
+  description?: string;
 }
 
 const ownersPlan: OwnerDay[] = [
@@ -58,10 +64,13 @@ const ownersPlan: OwnerDay[] = [
     day: 1,
     dayName: "Chaturthi",
     theme: "Covering North Main Kolkata Side today",
+    description:
+      "Starting our journey with the vibrant North Kolkata area, covering traditional and famous pandals around Belgachia and Shyambazar.",
     zones: ["North Kolkata"],
-    totalTime: "Full Day",
+    totalTime: "Full Day (8-10 hours)",
     color: "from-blue-500 to-indigo-600",
-    icon: <Star className="w-4 h-4" />,
+    bgColor: "bg-blue-50",
+    icon: <Star className="w-5 h-5" />,
     locations: [
       {
         name: "Belgachia",
@@ -93,15 +102,15 @@ const ownersPlan: OwnerDay[] = [
         ],
         mapUrl:
           "https://www.google.com/maps/dir/Shyambazar+5+Point/Bidhan+Sarani+Atlas+Club/Sikdar+Bagan+Durga+Puja/Hatibagan+Nabinpally+Durga+Puja+Committee/North+Tridhara+Durga+Puja/Nalin+Sarkar+Street+Durga+Puja/Hatibagan+Sarbojonin/Kashi+Bose+Lane+Durga+Puja+Committee/Chaltabagan+Loha+patty+durgapuja/Lalabagan+Nabankur+Durga+Puja+Pandal+entrance+gate,+Raja+Dinendra+Street,+Manicktala,+Sahitya+Parishad,+Ward+Number+15,+Kolkata,+West+Bengal/@22.5927062,88.3621567,2674m/data=!3m2!1e3!4b1!4m62!4m61!1m5!1m1!1s0x3a0276256a6c32e7:0xf39c24ddadb38682!2m2!1d88.37348!2d22.601283!1m5!1m1!1s0x3a0277922da71ee9:0xe8eab0a84ac51d93!2m2!1d88.3729181!2d22.599686!1m5!1m1!1s0x3a0277007ded3faf:0x9800f918c0a72fcf!2m2!1d88.3721381!2d22.5966221!1m5!1m1!1s0x3a0277004241962d:0xb37aec4cc13d9b01!2m2!1d88.3734176!2d22.5959028!1m5!1m1!1s0x3a02779677298fb9:0x9473a4b994b8d3cc!2m2!1d88.3745571!2d22.5958363!1m5!1m1!1s0x3a02763a2e785e2f:0xa519bd83e2d27c76!2m2!1d88.3743798!2d22.5946878!1m5!1m1!1s0x3a027630b1e30443:0x78837359e84d7bc7!2m2!1d88.3720004!2d22.5943863!1m5!1m1!1s0x3a027636f4aba21b:0xd56a6b40b1520547!2m2!1d88.3689174!2d22.5908979!1m5!1m1!1s0x3a02770056934497:0x641f83815da39b29!2m2!1d88.3723011!2d22.5844952!1m5!1m1!1s0x3a02770026d8bcad:0xa9e9419ef4a43e88!2m2!1d88.3767671!2d22.5883715!3e2?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
-        notes: "Spot ended Maniktala",
+        notes: "Tour ends at Maniktala. Great street food options available.",
       },
     ],
     choices: {
-      title: "User have choices",
+      title: "Your Next Move",
       options: [
-        "Go further for Kakurgachi - MITALI SANGHA, YUBA BRINDA",
-        "PROCEED TO ULTADANGA and depart",
-        "Go for central Kolkata/South Kolkata",
+        "Continue to Kakurgachi - Visit MITALI SANGHA, YUBA BRINDA",
+        "Head to ULTADANGA and wrap up for the day",
+        "Explore Central Kolkata/South Kolkata areas",
       ],
     },
   },
@@ -109,10 +118,13 @@ const ownersPlan: OwnerDay[] = [
     day: 2,
     dayName: "Panchami",
     theme: "Covering Main South",
+    description:
+      "Exploring South Kolkata's prestigious pandals including heritage areas around Kalighat, Alipore, and the famous Deshapriya Park circuit.",
     zones: ["South Kolkata"],
-    totalTime: "Full Day",
+    totalTime: "Full Day (9-11 hours)",
     color: "from-emerald-500 to-green-600",
-    icon: <Heart className="w-4 h-4" />,
+    bgColor: "bg-emerald-50",
+    icon: <Heart className="w-5 h-5" />,
     locations: [
       {
         name: "Rabindra Sarobar",
@@ -123,6 +135,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Lake Youth" },
           { name: "Pratipaditya Trikon Park" },
         ],
+        notes:
+          "Start early morning. Beautiful lake views and serene atmosphere.",
       },
       {
         name: "Kalighat Area",
@@ -135,11 +149,13 @@ const ownersPlan: OwnerDay[] = [
           { name: "Chetla Agrani" },
         ],
         mapUrl: "https://maps.app.goo.gl/hKr3TEo1wAthE4Fj7",
+        notes: "Historic temple area. Consider visiting Kalighat Temple.",
       },
       {
         name: "Alipore Area",
         pandals: [{ name: "Alipore Sarbojonin" }, { name: "Alipore 78 Pally" }],
         mapUrl: "https://maps.app.goo.gl/SNTAQjQzYmTeLG5E9",
+        notes: "Upscale area with sophisticated decorations.",
       },
       {
         name: "Deshapriya Park & Ballygunge",
@@ -156,22 +172,28 @@ const ownersPlan: OwnerDay[] = [
         ],
         mapUrl: "https://maps.app.goo.gl/JAqLTp2CU7AATrs19",
         notes:
-          "Bus routes: 13C, 18B/1, 18C, S-131, SD-8, S-62 to Deshapriya Park",
+          "Bus routes: 13C, 18B/1, 18C, S-131, SD-8, S-62 to Deshapriya Park. The crown jewel area!",
       },
     ],
     choices: {
-      title: "User have choices",
-      options: ["Head Further Kasba/Bypass", "Head To Sealdah & Depart"],
+      title: "Evening Options",
+      options: [
+        "Continue to Kasba/Bypass areas",
+        "Return via Sealdah & end the day",
+      ],
     },
   },
   {
     day: 3,
     dayName: "Shasti",
     theme: "Covering the Central",
+    description:
+      "Dive into Central Kolkata's heritage with traditional family pujas and historic locations around Sealdah and College Street area.",
     zones: ["Central Kolkata"],
-    totalTime: "Full Day",
+    totalTime: "Full Day (8-10 hours)",
     color: "from-purple-500 to-indigo-600",
-    icon: <Camera className="w-4 h-4" />,
+    bgColor: "bg-purple-50",
+    icon: <Camera className="w-5 h-5" />,
     locations: [
       {
         name: "Sealdah Railway Station",
@@ -180,6 +202,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Santosh Mitra Square" },
           { name: "Sealdah Railway Athletic" },
         ],
+        notes: "Major transport hub. Easy connectivity to other areas.",
       },
       {
         name: "Central Poddar Court",
@@ -198,21 +221,29 @@ const ownersPlan: OwnerDay[] = [
           { name: "Rajabazar Harinath Mukherjee Bari" },
         ],
         mapUrl: "https://maps.app.goo.gl/spUk7Yf934LR4eMJ6",
+        notes:
+          "Rich cultural heritage area. Book shops and academic institutions nearby.",
       },
     ],
     choices: {
-      title: "User have choices to",
-      options: ["Head for Kakurgachi", "Head for sealdah/ultadanga/shyambazar"],
+      title: "Next Destination",
+      options: [
+        "Head to Kakurgachi area",
+        "Return via Sealdah/Ultadanga/Shyambazar",
+      ],
     },
   },
   {
     day: 4,
     dayName: "Saptami",
     theme: "Covering North Side Branch",
-    zones: ["North Kolkata"],
-    totalTime: "Full Day",
+    description:
+      "Exploring the extended North Kolkata circuit including Dum Dum Park, traditional Sovabazar area, and Ultadanga's vibrant pandals.",
+    zones: ["North Kolkata Extended"],
+    totalTime: "Full Day (9-12 hours)",
     color: "from-red-500 to-pink-600",
-    icon: <Users className="w-4 h-4" />,
+    bgColor: "bg-red-50",
+    icon: <Users className="w-5 h-5" />,
     locations: [
       {
         name: "Dum Dum Park",
@@ -225,7 +256,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Bharat Chakra" },
           { name: "Tarun Sangha" },
         ],
-        mapUrl: "https://maps.app.goo.gl/5pfQmokHaCfF4KzDy5",
+        mapUrl: "https://maps.app.goo.gl/5pfQmokHaCfF4Kz5",
+        notes: "Start early. Multiple pandals in close proximity.",
       },
       {
         name: "Sovabazar X-ing",
@@ -246,6 +278,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Bagbazar Halder Bari" },
         ],
         mapUrl: "https://maps.app.goo.gl/JZLUhCukTwdAqcJX6",
+        notes:
+          "Historic area with traditional family pujas. Amazing craftsmanship at Kumartuli.",
       },
       {
         name: "Ultadanga Gouriberia Flyover",
@@ -263,6 +297,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Ultadanga Sangrami" },
         ],
         mapUrl: "https://maps.app.goo.gl/xuakhRXzxm4h5PAF7",
+        notes: "End the day here. Great transport connectivity.",
       },
     ],
   },
@@ -270,10 +305,13 @@ const ownersPlan: OwnerDay[] = [
     day: 5,
     dayName: "Ashtami",
     theme: "Covering the heritage Bonedi baris of Kolkata",
+    description:
+      "A special day dedicated to Kolkata's prestigious Bonedi Baris (heritage family pujas) - experience centuries-old traditions and royal celebrations.",
     zones: ["Heritage Areas"],
-    totalTime: "Full Day",
+    totalTime: "Full Day (8-10 hours)",
     color: "from-yellow-500 to-orange-600",
-    icon: <Star className="w-4 h-4" />,
+    bgColor: "bg-yellow-50",
+    icon: <Star className="w-5 h-5" />,
     locations: [
       {
         name: "Sovabazar Ahiritola Railway Station",
@@ -286,11 +324,13 @@ const ownersPlan: OwnerDay[] = [
           { name: "Dorji Para Mitra Bari" },
           { name: "Chhatubabu and Latubabu Thakurbari" },
           { name: "Chandra Bari" },
-          { name: "Jorasako Shib Krishna Daw Bati" },
+          { name: "Jorasako Shib Krishna Daw Bari" },
           { name: "Jorasako Sadharan" },
           { name: "Maniktala Saha Bari" },
         ],
         mapUrl: "https://maps.app.goo.gl/NvR5DzFpCja3kikA6",
+        notes:
+          "Historic family pujas with 200+ year traditions. Respect photography restrictions.",
       },
       {
         name: "Dharmatala SN Banerjee Road",
@@ -302,6 +342,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "New Market Sarbojonin" },
         ],
         mapUrl: "https://maps.app.goo.gl/i4eamFrixrgqxy8T7",
+        notes:
+          "Central location with easy metro access. Historic significance.",
       },
       {
         name: "Bhawanipur Harish Park",
@@ -322,6 +364,8 @@ const ownersPlan: OwnerDay[] = [
           { name: "Hazra Park Durgotsab" },
         ],
         mapUrl: "https://maps.app.goo.gl/NB6zaz5E91z9268XA",
+        notes:
+          "Mix of family pujas and community celebrations. Food street nearby.",
       },
     ],
   },
@@ -329,10 +373,13 @@ const ownersPlan: OwnerDay[] = [
     day: 6,
     dayName: "Navami",
     theme: "Covering Remaining South Kolkata",
+    description:
+      "Completing the South Kolkata circuit with extended areas including Santoshpur, Thakurpukur, and other suburban locations.",
     zones: ["South Kolkata Extended"],
-    totalTime: "Full Day",
+    totalTime: "Full Day (10-12 hours)",
     color: "from-green-500 to-emerald-600",
-    icon: <MapPin className="w-4 h-4" />,
+    bgColor: "bg-green-50",
+    icon: <MapPin className="w-5 h-5" />,
     locations: [
       {
         name: "Acropolis Mall",
@@ -344,6 +391,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Bosepukur Tal Bagan" },
         ],
         mapUrl: "https://maps.app.goo.gl/JnDDy6F5zDDETAz66",
+        notes: "Modern area with shopping options. Good food courts.",
       },
       {
         name: "Dhakuria",
@@ -356,6 +404,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Jodhpur 95 Pally Association" },
         ],
         mapUrl: "https://maps.app.goo.gl/NM41keKYRAq8zA3P7",
+        notes: "Residential area with intimate pandal experiences.",
       },
       {
         name: "Santoshpur",
@@ -366,11 +415,13 @@ const ownersPlan: OwnerDay[] = [
           { name: "Santoshpur Trikon Park" },
         ],
         mapUrl: "https://maps.app.goo.gl/5DbR3CyckoxVHFrh8",
+        notes: "Peaceful suburban pandals with unique themes.",
       },
       {
         name: "New Alipore (Cal)",
         exit: "New Alipore Exit",
         pandals: [{ name: "Suruchi Sangha" }],
+        notes: "Famous for innovative themes and celebrity visits.",
       },
       {
         name: "Thakurpukur",
@@ -388,6 +439,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Behala Sarbojonin" },
         ],
         mapUrl: "https://maps.app.goo.gl/9GyT6J5dKDYPT1KTA",
+        notes: "Historic family pujas in suburban setting.",
       },
       {
         name: "Hazra",
@@ -399,6 +451,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Maddox Square Park Sarbojonin" },
         ],
         mapUrl: "https://maps.app.goo.gl/1s448rV5KnUi9Bhu9",
+        notes: "End the day near Kalighat temple area.",
       },
     ],
   },
@@ -406,10 +459,13 @@ const ownersPlan: OwnerDay[] = [
     day: 7,
     dayName: "Dashami",
     theme: "Free Day Events",
+    description:
+      "The final day of festivities - participate in traditional Sindoor Khela, cover missed pandals, and witness the grand immersion ceremonies.",
     zones: ["All Areas"],
-    totalTime: "Flexible",
+    totalTime: "Flexible (6-8 hours)",
     color: "from-pink-500 to-rose-600",
-    icon: <Heart className="w-4 h-4" />,
+    bgColor: "bg-pink-50",
+    icon: <Heart className="w-5 h-5" />,
     locations: [
       {
         name: "Traditional Activities",
@@ -419,7 +475,7 @@ const ownersPlan: OwnerDay[] = [
           { name: "Observe immersion at Taki/Babughat" },
         ],
         notes:
-          "Final day of festivities - participate in farewell rituals and immersion ceremonies",
+          "Final day of festivities - participate in farewell rituals and immersion ceremonies. Emotional day for devotees.",
       },
     ],
     specialNote:
@@ -433,497 +489,518 @@ const openGoogleMaps = (url: string) => {
 };
 
 export default function OwnersPlan() {
-  const [selectedDay, setSelectedDay] = useState<number | null>(1);
-  const heroRef = useRef(null);
-  const isHeroInView = useInView(heroRef, { once: true });
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<"timeline" | "grid">("timeline");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
-      {/* Hero Section - Mobile Optimized */}
-      <motion.section
-        ref={heroRef}
-        className="relative bg-gradient-to-br from-purple-600 via-indigo-700 to-blue-800 text-white py-8 sm:py-12 md:py-16 lg:py-20 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHeroInView ? 1 : 0 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Background Image - Optimized */}
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-deep-orange text-white py-12 sm:py-16 lg:py-20 overflow-hidden">
+        {/* Background Animation Elements */}
         <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/18362801/pexels-photo-18362801.jpeg"
-            alt="Gorgeous Durga Puja temple scene"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-indigo-700/85 to-blue-800/90"></div>
+          <div className="absolute top-20 left-10 w-24 h-24 bg-festival-gold/20 rounded-full blur-xl animate-float"></div>
+          <div className="absolute top-40 right-20 w-20 h-20 bg-festival-vermillion/20 rounded-full blur-lg animate-pulse-slow"></div>
+          <div className="absolute bottom-20 left-1/3 w-16 h-16 bg-festival-amber/20 rounded-full blur-md animate-bounce-gentle"></div>
         </div>
 
-        {/* Animated Background Elements - Smaller for mobile */}
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-10 sm:top-20 left-4 sm:left-10 w-8 h-8 sm:w-12 sm:h-12 lg:w-20 lg:h-20 bg-festival-gold/20 rounded-full"
-            animate={{
-              y: [0, -10, 0],
-              scale: [1, 1.1, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute top-20 sm:top-40 right-4 sm:right-20 w-6 h-6 sm:w-10 sm:h-10 lg:w-16 lg:h-16 bg-festival-saffron/20 rounded-full"
-            animate={{
-              y: [0, 15, 0],
-              scale: [1, 0.9, 1],
-              opacity: [0.4, 0.7, 0.4],
-            }}
-            transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-          />
-        </div>
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-black/10"></div>
 
         <div className="relative container mx-auto mobile-safe">
           <div className="max-w-4xl mx-auto text-center mobile-container">
-            <motion.div
-              className="mb-3 sm:mb-4 md:mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{
-                y: isHeroInView ? 0 : 20,
-                opacity: isHeroInView ? 1 : 0,
-              }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <Badge className="bg-white/20 text-white border-white/30 text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-6 py-2 sm:py-3 shadow-glow animate-pulse-slow">
-                <User className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+            <div className="mb-4 sm:mb-6">
+              <Badge className="bg-white/20 text-white border-white/30 px-4 sm:px-6 py-2 sm:py-3 shadow-glow animate-pulse-slow">
+                <User className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                 Personal Journey
               </Badge>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              className="mobile-hero font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{
-                y: isHeroInView ? 0 : 30,
-                opacity: isHeroInView ? 1 : 0,
-              }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <span className="bg-gradient-to-r from-festival-gold via-festival-amber to-festival-saffron bg-clip-text text-transparent animate-shimmer">
+            <h1 className="mobile-hero font-bold mb-4 sm:mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-white via-festival-gold to-white bg-clip-text text-transparent animate-shimmer">
                 Owner's Plan
               </span>
-              <motion.span
-                className="block text-blue-200 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mt-2 sm:mt-3 md:mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isHeroInView ? 1 : 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
+              <span className="block text-festival-gold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-4">
                 My Personal Durga Puja Journey 2025
-              </motion.span>
-            </motion.h1>
+              </span>
+            </h1>
 
-            <motion.p
-              className="mobile-text sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{
-                y: isHeroInView ? 0 : 20,
-                opacity: isHeroInView ? 1 : 0,
-              }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              My day-wise documented plan for experiencing Kolkata's Durga Puja
-              celebrations with detailed routes and pandal visits
-            </motion.p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto px-2">
+              A meticulously planned 7-day journey covering 135+ pandals across
+              Kolkata. Follow my personal route for the ultimate Durga Puja
+              experience.
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{
-                y: isHeroInView ? 0 : 20,
-                opacity: isHeroInView ? 1 : 0,
-              }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Button
+                size="lg"
+                className="bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm font-bold w-full sm:w-auto"
+                onClick={() =>
+                  setViewMode(viewMode === "timeline" ? "grid" : "timeline")
+                }
               >
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-festival-orange to-festival-saffron hover:from-festival-orange-dark hover:to-festival-saffron-dark text-white font-semibold px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-sm sm:text-base lg:text-lg shadow-festival-lg w-full sm:w-auto"
-                >
-                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  View My Plan
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                {viewMode === "timeline" ? "Grid View" : "Timeline View"}
+              </Button>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-festival-orange to-festival-saffron hover:from-festival-orange-dark hover:to-festival-saffron-dark text-white font-bold w-full sm:w-auto"
               >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 text-sm sm:text-base lg:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 backdrop-blur-sm w-full sm:w-auto"
-                >
-                  <Route className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Follow Routes
-                </Button>
-              </motion.div>
-            </motion.div>
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Download PDF Guide
+              </Button>
+            </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Quick Overview Stats - Mobile Optimized */}
-      <motion.section
-        className="mobile-spacing lg:py-16 bg-gradient-to-r from-white via-festival-gold/5 to-festival-saffron/5 border-b-4 border-gradient-to-r border-festival-orange/20"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
+      {/* Stats Section */}
+      <section className="mobile-spacing lg:py-16 bg-gradient-to-r from-white via-festival-gold/5 to-festival-saffron/5 border-b-4 border-gradient-to-r border-festival-orange/20">
         <div className="container mx-auto mobile-safe">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               {
                 value: "7",
-                label: "Days Documented",
-                icon: (
-                  <Calendar className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
-                ),
+                label: "Days Planned",
+                icon: <Calendar className="w-8 h-8" />,
                 color: "from-festival-orange to-festival-saffron",
+                description: "Complete festival coverage",
               },
               {
                 value: "135+",
                 label: "Pandals Listed",
-                icon: <Star className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8" />,
-                color: "from-blue-500 to-blue-600",
+                icon: <Star className="w-8 h-8" />,
+                color: "from-festival-gold to-festival-amber",
+                description: "Across all major areas",
               },
               {
                 value: "21",
                 label: "Key Areas",
-                icon: (
-                  <MapPin className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
-                ),
-                color: "from-emerald-500 to-green-600",
+                icon: <MapPin className="w-8 h-8" />,
+                color: "from-blue-500 to-indigo-600",
+                description: "North, Central & South",
               },
               {
-                value: "Complete",
-                label: "Puja Coverage",
-                icon: <Route className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8" />,
+                value: "3",
+                label: "Zones",
+                icon: <Compass className="w-8 h-8" />,
                 color: "from-purple-500 to-indigo-600",
+                description: "Comprehensive coverage",
               },
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="text-center mobile-card bg-white rounded-xl sm:rounded-2xl shadow-festival hover:shadow-festival-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02 }}
+                className="text-center mobile-card bg-white rounded-xl sm:rounded-2xl shadow-festival hover:shadow-festival-lg transition-all duration-300 border border-festival-orange/10"
               >
-                <motion.div
-                  className={`inline-flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r ${stat.color} rounded-full text-white mb-2 sm:mb-3 md:mb-4 shadow-lg`}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                <div
+                  className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${stat.color} rounded-full text-white mb-3 sm:mb-4 shadow-lg`}
                 >
                   {stat.icon}
-                </motion.div>
-                <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                   {stat.value}
                 </div>
-                <p className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base">
+                <p className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base mb-1">
                   {stat.label}
                 </p>
-              </motion.div>
+                <p className="text-gray-500 text-xs">{stat.description}</p>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Owner's Day-wise Plan - Mobile Optimized */}
+      {/* Plan Content */}
       <section className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="container mx-auto mobile-safe">
-          <motion.div
-            className="text-center mb-8 sm:mb-12 lg:mb-16 mobile-container"
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="mobile-heading sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-800 via-festival-orange to-festival-saffron bg-clip-text text-transparent mb-2 sm:mb-4">
-              My Personal Durga Puja Plan
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-800 via-festival-orange to-festival-saffron bg-clip-text text-transparent mb-4">
+              My 7-Day Journey Plan
             </h2>
-            <p className="mobile-text sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Day-wise documented journey with specific pandals, routes, and
-              personal choices
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+              Carefully curated day-wise itinerary with specific routes,
+              timings, and insider tips
             </p>
-          </motion.div>
 
-          <div className="max-w-6xl mx-auto mobile-stack sm:space-y-6 lg:space-y-8">
-            {ownersPlan.map((day, index) => (
-              <motion.div
-                key={day.day}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-              >
-                <Card className="overflow-hidden hover:shadow-festival-lg transition-all duration-500 border-0 bg-gradient-to-r from-white to-gray-50">
-                  <CardHeader
-                    className={`cursor-pointer bg-gradient-to-r ${day.color} text-white`}
-                    onClick={() =>
-                      setSelectedDay(selectedDay === day.day ? null : day.day)
-                    }
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 sm:gap-4 lg:gap-6 min-w-0 flex-1">
-                        <motion.div
-                          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-white/20 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-xl shadow-lg backdrop-blur-sm flex-shrink-0"
-                          whileHover={{ scale: 1.1, rotate: 360 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          {day.icon}
-                        </motion.div>
-                        <div className="min-w-0 flex-1">
-                          <CardTitle className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-1 sm:mb-2 leading-tight">
-                            Day {day.day} - {day.dayName}
-                          </CardTitle>
-                          <CardDescription className="text-white/90 text-xs sm:text-sm md:text-base lg:text-lg leading-snug">
-                            {day.theme}
-                          </CardDescription>
+            {/* View Toggle */}
+            <div className="flex justify-center mb-8">
+              <div className="bg-white rounded-full p-1 shadow-lg border border-festival-orange/20">
+                <Button
+                  variant={viewMode === "timeline" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("timeline")}
+                  className={
+                    viewMode === "timeline"
+                      ? "bg-gradient-to-r from-festival-orange to-festival-saffron text-white"
+                      : ""
+                  }
+                >
+                  Timeline View
+                </Button>
+                <Button
+                  variant={viewMode === "grid" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("grid")}
+                  className={
+                    viewMode === "grid"
+                      ? "bg-gradient-to-r from-festival-orange to-festival-saffron text-white"
+                      : ""
+                  }
+                >
+                  Grid View
+                </Button>
+              </div>
+            </div>
+          </div>
 
-                          {/* Mobile-optimized badges */}
-                          <div className="flex flex-wrap items-center gap-1 sm:gap-2 mt-2">
-                            <Badge className="bg-white/20 text-white border-white/30 text-xs">
-                              {day.zones.join(" & ")}
-                            </Badge>
-                            <Badge className="bg-white/20 text-white border-white/30 text-xs">
-                              {day.locations.length} Locations
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-                      <motion.div
-                        animate={{ rotate: selectedDay === day.day ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-white flex-shrink-0 ml-2"
-                      >
-                        {selectedDay === day.day ? (
-                          <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6" />
-                        )}
-                      </motion.div>
-                    </div>
-                  </CardHeader>
+          {/* Timeline View */}
+          {viewMode === "timeline" && (
+            <div className="max-w-6xl mx-auto">
+              {/* Timeline connector */}
+              <div className="relative">
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-festival-orange via-festival-saffron to-festival-deep-orange"></div>
 
-                  <AnimatePresence>
-                    {selectedDay === day.day && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <CardContent className="mobile-card sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50/80 to-festival-orange/5">
-                          <div className="mobile-stack sm:space-y-6 lg:space-y-8">
-                            {/* Locations - Mobile Optimized */}
-                            <div className="mobile-stack sm:space-y-4 lg:space-y-6">
-                              {day.locations.map((location, locationIndex) => (
-                                <motion.div
-                                  key={locationIndex}
-                                  className="mobile-card bg-white rounded-lg sm:rounded-xl shadow-md border border-festival-orange/20 hover:shadow-lg transition-all duration-300"
-                                  initial={{ opacity: 0, y: 20 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{
-                                    duration: 0.4,
-                                    delay: locationIndex * 0.1,
-                                  }}
-                                >
-                                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-                                    <div className="flex items-start gap-3 min-w-0 flex-1">
-                                      <motion.div
-                                        className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-r ${day.color} rounded-full flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0`}
-                                        whileHover={{ scale: 1.1 }}
-                                        transition={{ duration: 0.2 }}
-                                      >
-                                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
-                                      </motion.div>
-                                      <div className="min-w-0 flex-1">
-                                        <h4 className="mobile-heading sm:text-lg lg:text-xl font-bold text-gray-800 leading-tight">
-                                          {location.name}
-                                        </h4>
-                                        {location.exit && (
-                                          <Badge className="bg-blue-100 text-blue-800 mt-1 text-xs">
-                                            Exit: {location.exit}
-                                          </Badge>
-                                        )}
-                                        {location.notes && (
-                                          <p className="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
-                                            {location.notes}
-                                          </p>
-                                        )}
-                                      </div>
-                                    </div>
-                                    {location.mapUrl && (
-                                      <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="flex-shrink-0 w-full sm:w-auto"
-                                      >
-                                        <Button
-                                          size="sm"
-                                          className="bg-gradient-to-r from-festival-orange to-festival-saffron hover:from-festival-orange-dark hover:to-festival-saffron-dark text-white text-xs sm:text-sm w-full sm:w-auto"
-                                          onClick={() =>
-                                            openGoogleMaps(location.mapUrl!)
-                                          }
-                                        >
-                                          <Navigation className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                                          View Route
-                                        </Button>
-                                      </motion.div>
-                                    )}
+                <div className="space-y-8">
+                  {ownersPlan.map((day, index) => (
+                    <div key={day.day} className="relative">
+                      {/* Timeline dot */}
+                      <div
+                        className={`absolute left-6 w-4 h-4 bg-gradient-to-r ${day.color} rounded-full border-4 border-white shadow-lg z-10`}
+                      ></div>
+
+                      {/* Card */}
+                      <div className="ml-16">
+                        <Card className="overflow-hidden shadow-xl border-0 bg-gradient-to-r from-white to-gray-50 hover:shadow-2xl transition-all duration-300">
+                          <CardHeader
+                            className={`cursor-pointer bg-gradient-to-r ${day.color} text-white relative overflow-hidden`}
+                            onClick={() =>
+                              setSelectedDay(
+                                selectedDay === day.day ? null : day.day,
+                              )
+                            }
+                          >
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                            <div className="relative z-10">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-4 flex-1">
+                                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white font-bold shadow-lg backdrop-blur-sm">
+                                    {day.icon}
                                   </div>
+                                  <div className="flex-1">
+                                    <CardTitle className="text-xl lg:text-2xl text-white mb-2 flex items-center gap-3">
+                                      Day {day.day} - {day.dayName}
+                                      <Badge className="bg-white/20 text-white border-white/30 text-xs">
+                                        {day.totalTime}
+                                      </Badge>
+                                    </CardTitle>
+                                    <CardDescription className="text-white/90 text-base lg:text-lg mb-3">
+                                      {day.theme}
+                                    </CardDescription>
+                                    <p className="text-white/80 text-sm leading-relaxed">
+                                      {day.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2 mt-3">
+                                      {day.zones.map((zone, zoneIndex) => (
+                                        <Badge
+                                          key={zoneIndex}
+                                          className="bg-white/20 text-white border-white/30 text-xs"
+                                        >
+                                          <MapPin className="w-3 h-3 mr-1" />
+                                          {zone}
+                                        </Badge>
+                                      ))}
+                                      <Badge className="bg-white/20 text-white border-white/30 text-xs">
+                                        <Star className="w-3 h-3 mr-1" />
+                                        {day.locations.reduce(
+                                          (total, location) =>
+                                            total + location.pandals.length,
+                                          0,
+                                        )}{" "}
+                                        Pandals
+                                      </Badge>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="text-white ml-4">
+                                  {selectedDay === day.day ? (
+                                    <ChevronUp className="w-6 h-6" />
+                                  ) : (
+                                    <ChevronDown className="w-6 h-6" />
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </CardHeader>
 
-                                  <div>
-                                    <h5 className="font-semibold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
-                                      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-festival-orange" />
-                                      Pandals to Visit (
-                                      {location.pandals.length})
-                                    </h5>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
-                                      {location.pandals.map(
-                                        (pandal, pandalIndex) => (
-                                          <motion.div
-                                            key={pandalIndex}
-                                            className="p-2 sm:p-3 bg-gradient-to-r from-festival-orange/5 to-festival-saffron/5 rounded-md sm:rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 transition-all duration-300"
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{
-                                              duration: 0.3,
-                                              delay: pandalIndex * 0.02,
-                                            }}
-                                            whileHover={{
-                                              scale: 1.01,
-                                              boxShadow:
-                                                "0 4px 12px rgba(255, 107, 53, 0.15)",
-                                            }}
-                                          >
-                                            <div className="flex items-start gap-2">
-                                              <Heart className="w-2 h-2 sm:w-3 sm:h-3 text-festival-orange flex-shrink-0 mt-0.5" />
-                                              <span className="text-xs sm:text-sm font-medium text-gray-800 leading-snug">
-                                                {pandal.name}
+                          {selectedDay === day.day && (
+                            <CardContent
+                              className={`p-6 lg:p-8 ${day.bgColor} border-t-4 border-festival-orange/30`}
+                            >
+                              <div className="space-y-6">
+                                {/* Locations */}
+                                <div className="space-y-4">
+                                  <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+                                    <Route className="w-5 h-5 text-festival-orange" />
+                                    Detailed Route ({day.locations.length}{" "}
+                                    stops)
+                                  </h3>
+
+                                  {day.locations.map(
+                                    (location, locationIndex) => (
+                                      <div
+                                        key={locationIndex}
+                                        className="bg-white rounded-xl shadow-lg p-6 border border-festival-orange/20 hover:shadow-xl transition-all duration-300"
+                                      >
+                                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+                                          <div className="flex items-start gap-4 flex-1">
+                                            <div
+                                              className={`w-12 h-12 bg-gradient-to-r ${day.color} rounded-full flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0`}
+                                            >
+                                              <span className="text-lg">
+                                                {locationIndex + 1}
                                               </span>
                                             </div>
-                                            {pandal.area && (
-                                              <p className="text-xs text-gray-500 mt-1 ml-4 sm:ml-5">
-                                                {pandal.area}
-                                              </p>
+                                            <div className="flex-1">
+                                              <h4 className="text-xl font-bold text-gray-800 mb-2">
+                                                {location.name}
+                                              </h4>
+                                              {location.exit && (
+                                                <Badge className="bg-blue-100 text-blue-800 mb-2">
+                                                  <Navigation className="w-3 h-3 mr-1" />
+                                                  Exit: {location.exit}
+                                                </Badge>
+                                              )}
+                                              {location.notes && (
+                                                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg mb-3">
+                                                  <div className="flex items-start gap-2">
+                                                    <Info className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
+                                                    <p className="text-sm text-yellow-800 leading-relaxed">
+                                                      {location.notes}
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              )}
+                                            </div>
+                                          </div>
+                                          {location.mapUrl && (
+                                            <Button
+                                              className="bg-gradient-to-r from-festival-orange to-festival-saffron text-white hover:shadow-lg transition-all duration-300"
+                                              onClick={() =>
+                                                openGoogleMaps(location.mapUrl!)
+                                              }
+                                            >
+                                              <Navigation className="w-4 h-4 mr-2" />
+                                              View Route
+                                              <ExternalLink className="w-3 h-3 ml-2" />
+                                            </Button>
+                                          )}
+                                        </div>
+
+                                        <div>
+                                          <h5 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                            <Star className="w-4 h-4 text-festival-orange" />
+                                            Pandals to Visit (
+                                            {location.pandals.length})
+                                          </h5>
+                                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                            {location.pandals.map(
+                                              (pandal, pandalIndex) => (
+                                                <div
+                                                  key={pandalIndex}
+                                                  className="group p-4 bg-gradient-to-br from-festival-orange/5 to-festival-saffron/5 rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 hover:shadow-md transition-all duration-300"
+                                                >
+                                                  <div className="flex items-start gap-3">
+                                                    <div className="w-6 h-6 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">
+                                                      {pandalIndex + 1}
+                                                    </div>
+                                                    <div className="flex-1">
+                                                      <span className="text-sm font-semibold text-gray-800 group-hover:text-festival-orange transition-colors">
+                                                        {pandal.name}
+                                                      </span>
+                                                      {pandal.area && (
+                                                        <p className="text-xs text-gray-500 mt-1">
+                                                          {pandal.area}
+                                                        </p>
+                                                      )}
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              ),
                                             )}
-                                          </motion.div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ),
+                                  )}
+                                </div>
+
+                                {/* Choices Section */}
+                                {day.choices && (
+                                  <div className="bg-gradient-to-r from-festival-gold/10 to-festival-saffron/10 rounded-xl p-6 border-2 border-festival-orange/20">
+                                    <h4 className="font-bold text-festival-orange mb-4 flex items-center gap-2 text-lg">
+                                      <Target className="w-5 h-5" />
+                                      {day.choices.title}
+                                    </h4>
+                                    <div className="space-y-3">
+                                      {day.choices.options.map(
+                                        (option, idx) => (
+                                          <div
+                                            key={idx}
+                                            className="flex items-start gap-3 p-4 bg-white rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 hover:shadow-md transition-all duration-300"
+                                          >
+                                            <div className="w-8 h-8 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 mt-0.5">
+                                              {String.fromCharCode(65 + idx)}
+                                            </div>
+                                            <span className="text-gray-800 font-medium leading-relaxed">
+                                              {option}
+                                            </span>
+                                          </div>
                                         ),
                                       )}
                                     </div>
                                   </div>
-                                </motion.div>
-                              ))}
-                            </div>
+                                )}
 
-                            {/* Choices Section - Mobile Optimized */}
-                            {day.choices && (
-                              <motion.div
-                                className="mobile-card bg-gradient-to-r from-festival-gold/10 to-festival-saffron/10 rounded-lg sm:rounded-xl border border-festival-orange/20"
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5 }}
-                              >
-                                <h4 className="font-bold text-festival-orange mb-3 sm:mb-4 flex items-center gap-2 text-sm sm:text-base">
-                                  <Route className="w-4 h-4 sm:w-5 sm:h-5" />
-                                  {day.choices.title}
-                                </h4>
-                                <div className="mobile-stack sm:space-y-3">
-                                  {day.choices.options.map((option, idx) => (
-                                    <motion.div
-                                      key={idx}
-                                      className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white rounded-md sm:rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 transition-all duration-300"
-                                      whileHover={{ scale: 1.01, x: 2 }}
-                                      transition={{ duration: 0.2 }}
+                                {/* Special Contact Message */}
+                                {day.specialNote && (
+                                  <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-6 border-2 border-pink-200 text-center">
+                                    <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                                      <Heart className="w-8 h-8" />
+                                    </div>
+                                    <h4 className="font-bold text-pink-700 mb-4 text-lg">
+                                      Need Personalized Help?
+                                    </h4>
+                                    <p className="text-pink-700 mb-6 leading-relaxed text-lg">
+                                      {day.specialNote}
+                                    </p>
+                                    <Button
+                                      className="bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+                                      onClick={() =>
+                                        (window.location.href = "/contact")
+                                      }
                                     >
-                                      <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">
-                                        {String.fromCharCode(65 + idx)}
-                                      </div>
-                                      <span className="text-gray-800 font-medium text-xs sm:text-sm leading-relaxed">
-                                        {option}
-                                      </span>
-                                    </motion.div>
-                                  ))}
-                                </div>
-                              </motion.div>
-                            )}
+                                      <Users className="w-5 h-5 mr-2" />
+                                      Get Personal Guidance
+                                    </Button>
+                                  </div>
+                                )}
+                              </div>
+                            </CardContent>
+                          )}
+                        </Card>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
-                            {/* Special Contact Message for Dashami - Mobile Optimized */}
-                            {day.specialNote && (
-                              <motion.div
-                                className="mobile-card bg-gradient-to-r from-pink-50 to-rose-50 rounded-lg sm:rounded-xl border-2 border-pink-200 text-center"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.3 }}
-                              >
-                                <h4 className="font-bold text-pink-700 mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base">
-                                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
-                                  Need Help?
-                                </h4>
-                                <p className="text-pink-700 mb-3 sm:mb-4 text-sm sm:text-base lg:text-lg leading-relaxed">
-                                  {day.specialNote}
-                                </p>
-                                <motion.div
-                                  whileHover={{ scale: 1.02 }}
-                                  whileTap={{ scale: 0.98 }}
-                                >
-                                  <Button
-                                    className="bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto"
-                                    onClick={() =>
-                                      (window.location.href = "/contact")
-                                    }
-                                  >
-                                    <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                                    Contact Me
-                                  </Button>
-                                </motion.div>
-                              </motion.div>
-                            )}
-                          </div>
-                        </CardContent>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+          {/* Grid View */}
+          {viewMode === "grid" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {ownersPlan.map((day) => (
+                <Card
+                  key={day.day}
+                  className="overflow-hidden shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 hover:shadow-xl transition-all duration-300"
+                >
+                  <CardHeader
+                    className={`bg-gradient-to-r ${day.color} text-white`}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white font-bold">
+                        {day.icon}
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg text-white">
+                          Day {day.day} - {day.dayName}
+                        </CardTitle>
+                        <Badge className="bg-white/20 text-white border-white/30 text-xs mt-1">
+                          {day.totalTime}
+                        </Badge>
+                      </div>
+                    </div>
+                    <CardDescription className="text-white/90 text-sm">
+                      {day.theme}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      {day.description}
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Areas:</span>
+                        <span className="font-medium">
+                          {day.zones.join(", ")}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Locations:</span>
+                        <span className="font-medium">
+                          {day.locations.length}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Pandals:</span>
+                        <span className="font-medium">
+                          {day.locations.reduce(
+                            (total, location) =>
+                              total + location.pandals.length,
+                            0,
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    <Button
+                      className="w-full mt-4 bg-gradient-to-r from-festival-orange to-festival-saffron text-white"
+                      onClick={() => {
+                        setViewMode("timeline");
+                        setSelectedDay(day.day);
+                      }}
+                    >
+                      View Details
+                    </Button>
+                  </CardContent>
                 </Card>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
-          {/* Coming Soon Section - Mobile Optimized */}
-          <motion.div
-            className="mt-8 sm:mt-12 lg:mt-16 text-center mobile-card bg-gradient-to-r from-white to-festival-gold/5 rounded-xl sm:rounded-2xl shadow-festival border border-festival-orange/20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full text-white mb-4 sm:mb-6 shadow-lg"
-              whileHover={{ scale: 1.1, rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Calendar className="w-6 h-6 sm:w-8 sm:h-8" />
-            </motion.div>
-            <h3 className="mobile-heading sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2 sm:mb-4">
-              More Days Coming Soon
-            </h3>
-            <p className="text-gray-600 mobile-text sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
-              Stay tuned as I document my complete Durga Puja journey day by
-              day. Each day will include detailed routes, pandal lists, and
-              personal experiences to help you plan your own adventure.
-            </p>
-          </motion.div>
+          {/* Summary Section */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-white to-festival-gold/5 rounded-2xl p-8 shadow-xl border border-festival-orange/20">
+              <div className="w-20 h-20 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white mx-auto mb-6">
+                <Calendar className="w-10 h-10" />
+              </div>
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
+                Complete Durga Puja Experience
+              </h3>
+              <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed mb-6">
+                This comprehensive 7-day plan covers every major area of
+                Kolkata, ensuring you don't miss any significant pandals. From
+                heritage Bonedi Baris to modern themed pandals, experience the
+                complete spectrum of Durga Puja celebrations.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-festival-orange to-festival-saffron text-white font-bold"
+                  onClick={() => (window.location.href = "/contact")}
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  Get Personal Guide
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-festival-orange text-festival-orange hover:bg-festival-orange hover:text-white"
+                >
+                  <ExternalLink className="w-5 h-5 mr-2" />
+                  Share This Plan
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
