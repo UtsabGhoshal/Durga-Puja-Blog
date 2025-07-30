@@ -256,7 +256,7 @@ export default function Header() {
                           whileHover={{ x: 4 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <span>{item.name}</span>
+                          <span className="truncate">{item.name}</span>
                           <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             whileHover={{ opacity: 1, x: 0 }}
