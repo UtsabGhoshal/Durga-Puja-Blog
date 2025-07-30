@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface PandalLocation {
   name: string;
