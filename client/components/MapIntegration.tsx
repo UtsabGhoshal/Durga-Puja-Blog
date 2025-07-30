@@ -355,21 +355,40 @@ export default function MapIntegration({
 
           {/* Quick Suggestions */}
           {places.length === 0 && !query && (
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Popular Searches</h3>
-              <div className="flex flex-wrap gap-2">
-                {['Durga Puja Pandal', 'Bagbazar', 'Kumartuli', 'College Square', 'Shyambazar', 'Heritage Pandal'].map((suggestion) => (
-                  <motion.button
-                    key={suggestion}
-                    className="px-4 py-2 bg-festival-orange/10 text-festival-orange rounded-full text-sm hover:bg-festival-orange/20 transition-colors"
-                    onClick={() => setQuery(suggestion)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {suggestion}
-                  </motion.button>
-                ))}
+            <div className="mt-6 space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold mb-4 text-gray-800">Popular Searches</h3>
+                <div className="flex flex-wrap gap-2">
+                  {['Durga Puja Pandal', 'Bagbazar', 'Kumartuli', 'College Square', 'Shyambazar', 'Heritage Pandal'].map((suggestion) => (
+                    <motion.button
+                      key={suggestion}
+                      className="px-4 py-2 bg-festival-orange/10 text-festival-orange rounded-full text-sm hover:bg-festival-orange/20 transition-colors"
+                      onClick={() => setQuery(suggestion)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {suggestion}
+                    </motion.button>
+                  ))}
+                </div>
               </div>
+
+              {dataSource === 'mock' && (
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="p-1 bg-blue-100 rounded-full">
+                      <Search className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-blue-900 mb-1">Map Search is Working!</h4>
+                      <p className="text-xs text-blue-700">
+                        The search functionality is fully operational and will show sample Durga Puja pandals.
+                        For live Google Maps data, configure the RAPIDAPI_KEY environment variable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </CardContent>
