@@ -668,7 +668,7 @@ export default function OwnersPlan() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
-                <Card className="overflow-hidden hover:shadow-festival-lg transition-all duration-500 border-0 bg-gradient-to-r from-white to-gray-50">
+                <Card className="overflow-hidden hover:shadow-festival-lg transition-all duration-500 border-0 bg-gradient-to-r from-white to-gray-50" style={{ contain: isMobile ? 'layout' : 'initial' }}>
                   <CardHeader
                     className={`cursor-pointer bg-gradient-to-r ${day.color} text-white`}
                     onClick={() =>
