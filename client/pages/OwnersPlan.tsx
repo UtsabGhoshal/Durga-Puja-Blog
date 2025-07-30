@@ -717,15 +717,9 @@ export default function OwnersPlan() {
                     </div>
                   </CardHeader>
 
-                  <AnimatePresence mode="wait">
-                    {selectedDay === day.day && (
-                      <motion.div
-                        initial={isMobile ? { opacity: 0 } : { opacity: 0, height: 0 }}
-                        animate={isMobile ? { opacity: 1 } : { opacity: 1, height: "auto" }}
-                        exit={isMobile ? { opacity: 0 } : { opacity: 0, height: 0 }}
-                        transition={{ duration: isMobile ? 0.2 : 0.3 }}
-                        style={{ overflow: 'hidden' }}
-                      >
+                  {selectedDay === day.day && (
+                    isMobile ? (
+                      <div className="overflow-hidden">
                         <CardContent className="mobile-card sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50/80 to-festival-orange/5 overflow-x-hidden">
                           <div className="mobile-stack sm:space-y-6 lg:space-y-8">
                             {/* Locations - Mobile Optimized */}
@@ -895,9 +889,189 @@ export default function OwnersPlan() {
                             )}
                           </div>
                         </CardContent>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      </div>
+                    ) : (
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                        <CardContent className="mobile-card sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50/80 to-festival-orange/5 overflow-x-hidden">
+                          <div className="mobile-stack sm:space-y-6 lg:space-y-8">
+                            {/* Locations - Mobile Optimized */}
+                            <div className="mobile-stack sm:space-y-4 lg:space-y-6">
+                              {day.locations.map((location, locationIndex) => (
+                                <motion.div
+                                  key={locationIndex}
+                                  className="mobile-card bg-white rounded-lg sm:rounded-xl shadow-md border border-festival-orange/20 hover:shadow-lg transition-all duration-300"
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{
+                                    duration: 0.4,
+                                    delay: locationIndex * 0.1,
+                                  }}
+                                >
+                                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+                                    <div className="flex items-start gap-3 min-w-0 flex-1">
+                                      <motion.div
+                                        className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-r ${day.color} rounded-full flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0`}
+                                        whileHover={{ scale: 1.1 }}
+                                        transition={{ duration: 0.2 }}
+                                      >
+                                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
+                                      </motion.div>
+                                      <div className="min-w-0 flex-1">
+                                        <h4 className="mobile-heading sm:text-lg lg:text-xl font-bold text-gray-800 leading-tight">
+                                          {location.name}
+                                        </h4>
+                                        {location.exit && (
+                                          <Badge className="bg-blue-100 text-blue-800 mt-1 text-xs">
+                                            Exit: {location.exit}
+                                          </Badge>
+                                        )}
+                                        {location.notes && (
+                                          <p className="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
+                                            {location.notes}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </div>
+                                    {location.mapUrl && (
+                                      <motion.div
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="flex-shrink-0 w-full sm:w-auto"
+                                      >
+                                        <Button
+                                          size="sm"
+                                          className="bg-gradient-to-r from-festival-orange to-festival-saffron hover:from-festival-orange-dark hover:to-festival-saffron-dark text-white text-xs sm:text-sm w-full sm:w-auto"
+                                          onClick={() =>
+                                            openGoogleMaps(location.mapUrl!)
+                                          }
+                                        >
+                                          <Navigation className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                                          View Route
+                                        </Button>
+                                      </motion.div>
+                                    )}
+                                  </div>
+
+                                  <div>
+                                    <h5 className="font-semibold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
+                                      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-festival-orange" />
+                                      Pandals to Visit (
+                                      {location.pandals.length})
+                                    </h5>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                                      {location.pandals.map(
+                                        (pandal, pandalIndex) => (
+                                          <motion.div
+                                            key={`${locationIndex}-${pandalIndex}-${pandal.name}`}
+                                            className="p-2 sm:p-3 bg-gradient-to-r from-festival-orange/5 to-festival-saffron/5 rounded-md sm:rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 transition-all duration-300"
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{
+                                              duration: 0.3,
+                                              delay: pandalIndex * 0.02,
+                                            }}
+                                            whileHover={{
+                                              scale: 1.01,
+                                              boxShadow:
+                                                "0 4px 12px rgba(255, 107, 53, 0.15)",
+                                            }}
+                                          >
+                                            <div className="flex items-start gap-2">
+                                              <Heart className="w-2 h-2 sm:w-3 sm:h-3 text-festival-orange flex-shrink-0 mt-0.5" />
+                                              <span className="text-xs sm:text-sm font-medium text-gray-800 leading-snug">
+                                                {pandal.name}
+                                              </span>
+                                            </div>
+                                            {pandal.area && (
+                                              <p className="text-xs text-gray-500 mt-1 ml-4 sm:ml-5">
+                                                {pandal.area}
+                                              </p>
+                                            )}
+                                          </motion.div>
+                                        ),
+                                      )}
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              ))}
+                            </div>
+
+                            {/* Choices Section - Mobile Optimized */}
+                            {day.choices && (
+                              <motion.div
+                                className="mobile-card bg-gradient-to-r from-festival-gold/10 to-festival-saffron/10 rounded-lg sm:rounded-xl border border-festival-orange/20"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5 }}
+                              >
+                                <h4 className="font-bold text-festival-orange mb-3 sm:mb-4 flex items-center gap-2 text-sm sm:text-base">
+                                  <Route className="w-4 h-4 sm:w-5 sm:h-5" />
+                                  {day.choices.title}
+                                </h4>
+                                <div className="mobile-stack sm:space-y-3">
+                                  {day.choices.options.map((option, idx) => (
+                                    <motion.div
+                                      key={idx}
+                                      className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white rounded-md sm:rounded-lg border border-festival-orange/20 hover:border-festival-orange/40 transition-all duration-300"
+                                      whileHover={{ scale: 1.01, x: 2 }}
+                                      transition={{ duration: 0.2 }}
+                                    >
+                                      <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">
+                                        {String.fromCharCode(65 + idx)}
+                                      </div>
+                                      <span className="text-gray-800 font-medium text-xs sm:text-sm leading-relaxed">
+                                        {option}
+                                      </span>
+                                    </motion.div>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Special Contact Message for Dashami - Mobile Optimized */}
+                            {day.specialNote && (
+                              <motion.div
+                                className="mobile-card bg-gradient-to-r from-pink-50 to-rose-50 rounded-lg sm:rounded-xl border-2 border-pink-200 text-center"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                              >
+                                <h4 className="font-bold text-pink-700 mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base">
+                                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+                                  Need Help?
+                                </h4>
+                                <p className="text-pink-700 mb-3 sm:mb-4 text-sm sm:text-base lg:text-lg leading-relaxed">
+                                  {day.specialNote}
+                                </p>
+                                <motion.div
+                                  whileHover={{ scale: 1.02 }}
+                                  whileTap={{ scale: 0.98 }}
+                                >
+                                  <Button
+                                    className="bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto"
+                                    onClick={() =>
+                                      (window.location.href = "/contact")
+                                    }
+                                  >
+                                    <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                                    Contact Me
+                                  </Button>
+                                </motion.div>
+                              </motion.div>
+                            )}
+                          </div>
+                        </CardContent>
+                        </motion.div>
+                      </AnimatePresence>
+                    )
+                  )}
                 </Card>
               </motion.div>
             ))}
