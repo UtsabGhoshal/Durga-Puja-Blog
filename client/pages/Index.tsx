@@ -104,12 +104,13 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Background Image */}
-      <motion.section 
+      <motion.section
         ref={heroRef}
-        className="relative h-screen bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-gold text-white overflow-hidden"
+        className="relative min-h-screen h-screen bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-gold text-white overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHeroInView ? 1 : 0 }}
         transition={{ duration: 1 }}
+        style={{ minHeight: '100svh' }}
       >
         {/* Background Image */}
         <div className="absolute inset-0">
