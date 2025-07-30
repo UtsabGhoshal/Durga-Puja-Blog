@@ -132,6 +132,7 @@ export default function MapIntegration({
           place.name.toLowerCase().includes(query.toLowerCase()) ||
           place.category.toLowerCase().includes(query.toLowerCase())
         ));
+        setDataSource('mock');
       }
     } catch (error) {
       console.error('Search failed:', error);
@@ -140,6 +141,7 @@ export default function MapIntegration({
         place.name.toLowerCase().includes(query.toLowerCase()) ||
         place.category.toLowerCase().includes(query.toLowerCase())
       ));
+      setDataSource('mock');
     } finally {
       setIsLoading(false);
     }
