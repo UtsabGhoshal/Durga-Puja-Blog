@@ -236,7 +236,7 @@ export default function Header() {
                     >
                       <Link
                         to={item.href}
-                        className="group relative text-white hover:text-festival-gold transition-all duration-300 py-4 px-4 rounded-lg block overflow-hidden min-h-[48px] flex items-center"
+                        className="group relative text-white hover:text-festival-gold transition-all duration-300 py-3 px-4 rounded-lg block overflow-hidden min-h-[48px] flex items-center text-sm font-medium"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <motion.div
