@@ -350,9 +350,9 @@ export default function AreaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         ref={heroRef}
-        className="relative bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-deep-orange text-white py-20 overflow-hidden"
+        className="relative bg-gradient-to-br from-festival-orange via-festival-saffron to-festival-deep-orange text-white py-12 sm:py-16 lg:py-20 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHeroInView ? 1 : 0 }}
         transition={{ duration: 1 }}
@@ -390,22 +390,22 @@ export default function AreaGuide() {
 
         <div className="absolute inset-0 bg-black/10"></div>
         
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div 
-              className="mb-6"
+        <div className="relative container mx-auto mobile-safe">
+          <div className="max-w-4xl mx-auto text-center mobile-container">
+            <motion.div
+              className="mb-4 sm:mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 20, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Badge className="bg-white/20 text-white border-white/30 text-lg px-6 py-3 shadow-glow animate-pulse-slow">
-                <Grid3X3 className="w-4 h-4 mr-2" />
+              <Badge className="bg-white/20 text-white border-white/30 text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3 shadow-glow animate-pulse-slow">
+                <Grid3X3 className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                 Explore by Area
               </Badge>
             </motion.div>
-            
-            <motion.h1 
-              className="text-4xl md:text-7xl font-bold mb-6 leading-tight"
+
+            <motion.h1
+              className="mobile-hero font-bold mb-4 sm:mb-6 leading-tight"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 30, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -413,8 +413,8 @@ export default function AreaGuide() {
               <span className="bg-gradient-to-r from-white via-festival-gold to-white bg-clip-text text-transparent animate-shimmer">
                 Area Guide
               </span>
-              <motion.span 
-                className="block text-festival-gold text-2xl md:text-4xl mt-4"
+              <motion.span
+                className="block text-festival-gold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isHeroInView ? 1 : 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -423,31 +423,31 @@ export default function AreaGuide() {
               </motion.span>
             </motion.h1>
             
-            <motion.p 
-              className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto"
+            <motion.p
+              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto px-2"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 20, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Discover Durga Puja pandals organized by Kolkata's neighborhoods and areas. 
+              Discover Durga Puja pandals organized by Kolkata's neighborhoods and areas.
               Find all the famous pujas in your locality or explore new areas.
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: isHeroInView ? 0 : 20, opacity: isHeroInView ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 1 }}
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="bg-white text-festival-orange hover:bg-gray-100 text-lg px-8 py-6 shadow-festival-lg font-bold">
-                  <MapPin className="w-5 h-5 mr-2" />
+                <Button size="lg" className="bg-white text-festival-orange hover:bg-gray-100 text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-4 sm:py-6 shadow-festival-lg font-bold w-full sm:w-auto">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Browse Areas
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6 backdrop-blur-sm font-bold">
-                  <Search className="w-5 h-5 mr-2" />
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-4 sm:py-6 backdrop-blur-sm font-bold w-full sm:w-auto">
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Quick Search
                 </Button>
               </motion.div>
@@ -457,15 +457,15 @@ export default function AreaGuide() {
       </motion.section>
 
       {/* Stats Section */}
-      <motion.section 
+      <motion.section
         ref={statsRef}
-        className="py-16 bg-gradient-to-r from-white via-festival-gold/5 to-festival-saffron/5 border-b-4 border-gradient-to-r border-festival-orange/20"
+        className="mobile-spacing lg:py-16 bg-gradient-to-r from-white via-festival-gold/5 to-festival-saffron/5 border-b-4 border-gradient-to-r border-festival-orange/20"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: isStatsInView ? 1 : 0, y: isStatsInView ? 0 : 50 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="container mx-auto mobile-safe">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               { value: totalAreas, label: "Areas Covered", icon: <Grid3X3 className="w-8 h-8" />, color: "from-festival-orange to-festival-saffron" },
               { value: `${totalPandals}+`, label: "Total Pandals", icon: <Star className="w-8 h-8" />, color: "from-festival-gold to-festival-amber" },
@@ -474,32 +474,32 @@ export default function AreaGuide() {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="text-center p-8 bg-white rounded-2xl shadow-festival hover:shadow-festival-lg transition-all duration-300 border border-festival-orange/10"
+                className="text-center mobile-card bg-white rounded-xl sm:rounded-2xl shadow-festival hover:shadow-festival-lg transition-all duration-300 border border-festival-orange/10"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: isStatsInView ? 1 : 0, y: isStatsInView ? 0 : 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.02,
                   boxShadow: "0 25px 50px -12px rgba(255, 107, 53, 0.35)",
                   transition: { duration: 0.2 }
                 }}
               >
-                <motion.div 
-                  className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${stat.color} rounded-full text-white mb-4 shadow-lg`}
+                <motion.div
+                  className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${stat.color} rounded-full text-white mb-3 sm:mb-4 shadow-lg`}
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  {stat.icon}
+                  <div className="w-6 h-6 sm:w-8 sm:h-8">{stat.icon}</div>
                 </motion.div>
-                <motion.div 
-                  className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-2"
+                <motion.div
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-1 sm:mb-2"
                   initial={{ scale: 0 }}
                   animate={{ scale: isStatsInView ? 1 : 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
                 >
                   {stat.value}
                 </motion.div>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
+                <p className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -507,40 +507,40 @@ export default function AreaGuide() {
       </motion.section>
 
       {/* Search & Filter Section */}
-      <motion.section 
-        className="py-12 bg-gradient-to-r from-white to-festival-gold/5"
+      <motion.section
+        className="mobile-spacing lg:py-12 bg-gradient-to-r from-white to-festival-gold/5"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <motion.div 
-              className="flex flex-col md:flex-row gap-6 mb-8"
+        <div className="container mx-auto mobile-safe">
+          <div className="max-w-4xl mx-auto mobile-container">
+            <motion.div
+              className="flex flex-col sm:flex-row gap-3 sm:gap-6 mb-6 sm:mb-8"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <motion.div 
+              <motion.div
                 className="relative flex-1"
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.2 }}
               >
-                <Search className="absolute left-4 top-4 h-5 w-5 text-festival-orange animate-bounce-gentle" />
+                <Search className="absolute left-3 sm:left-4 top-3 sm:top-4 h-4 w-4 sm:h-5 sm:w-5 text-festival-orange animate-bounce-gentle" />
                 <Input
                   placeholder="Search areas or pandals..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 h-14 border-2 border-festival-orange/30 focus:border-festival-orange rounded-xl text-lg shadow-lg hover:shadow-festival transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                  className="pl-10 sm:pl-12 h-12 sm:h-14 border-2 border-festival-orange/30 focus:border-festival-orange rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-festival transition-all duration-300 bg-white/80 backdrop-blur-sm"
                 />
               </motion.div>
               <motion.select
                 value={selectedZone}
                 onChange={(e) => setSelectedZone(e.target.value)}
-                className="px-6 py-4 h-14 border-2 border-festival-orange/30 rounded-xl focus:border-festival-orange focus:outline-none text-lg font-medium shadow-lg hover:shadow-festival transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                whileHover={{ scale: 1.02 }}
+                className="px-4 sm:px-6 py-3 sm:py-4 h-12 sm:h-14 border-2 border-festival-orange/30 rounded-lg sm:rounded-xl focus:border-festival-orange focus:outline-none text-sm sm:text-base lg:text-lg font-medium shadow-lg hover:shadow-festival transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.2 }}
               >
                 {zones.map(zone => (
@@ -549,14 +549,14 @@ export default function AreaGuide() {
               </motion.select>
             </motion.div>
             
-            <motion.div 
-              className="text-center mb-8"
+            <motion.div
+              className="text-center mb-6 sm:mb-8"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 mobile-text">
                 Showing <span className="font-bold text-festival-orange">{filteredAreas.length}</span> of <span className="font-bold text-festival-orange">{totalAreas}</span> areas
               </p>
             </motion.div>
