@@ -363,6 +363,72 @@ export default function AreaGuide() {
     searchRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Generate autocomplete suggestions
+  const suggestions = useMemo(() => {
+    if (searchTerm.length < 1) return [];
+
+    const allItems = [];
+
+    // Add area names
+    areaData.forEach(area => {
+      if (area.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        allItems.push({ type: 'area', name: area.name, zone: area.zone });
+      }
+
+      // Add pandal names
+      area.pandals.forEach(pandal => {
+        if (pandal.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          allItems.push({ type: 'pandal', name: pandal.name, area: area.name, zone: area.zone });
+        }
+      });
+    });
+
+    return allItems.slice(0, 8); // Limit to 8 suggestions
+  }, [searchTerm]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setShowSuggestions(value.length > 0);
+    setActiveSuggestion(-1);
+  };
+
+  const handleSuggestionClick = (suggestion: any) => {
+    setSearchTerm(suggestion.name);
+    setShowSuggestions(false);
+    if (suggestion.type === 'area') {
+      setSelectedZone(suggestion.zone);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!showSuggestions) return;
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setActiveSuggestion(prev =>
+          prev < suggestions.length - 1 ? prev + 1 : 0
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setActiveSuggestion(prev =>
+          prev > 0 ? prev - 1 : suggestions.length - 1
+        );
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (activeSuggestion >= 0) {
+          handleSuggestionClick(suggestions[activeSuggestion]);
+        }
+        break;
+      case 'Escape':
+        setShowSuggestions(false);
+        setActiveSuggestion(-1);
+        break;
+    }
+  };
+
   const totalPandals = areaData.reduce(
     (total, area) => total + area.pandals.length,
     0,
