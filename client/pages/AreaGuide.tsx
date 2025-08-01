@@ -759,7 +759,7 @@ export default function AreaGuide() {
       </motion.section>
 
       {/* Areas List */}
-      <section className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
+      <section ref={areasRef} className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="container mx-auto mobile-safe">
           <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 mobile-container">
             <AnimatePresence>
