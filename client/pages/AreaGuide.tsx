@@ -324,6 +324,8 @@ export default function AreaGuide() {
 
   const heroRef = useRef(null);
   const statsRef = useRef(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const areasRef = useRef<HTMLDivElement>(null);
   const isHeroInView = useInView(heroRef, { once: true });
   const isStatsInView = useInView(statsRef, { once: true });
 
