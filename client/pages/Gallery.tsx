@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Camera, 
-  Heart, 
-  Share2, 
-  Download, 
+import {
+  Camera,
+  Heart,
+  Share2,
+  Download,
   ExternalLink,
   Upload,
   Star,
@@ -14,13 +14,19 @@ import {
   Users,
   Eye,
   Filter,
-  Grid3X3
+  Grid3X3,
 } from "lucide-react";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
 const galleryCategories = [
-  "All", "Pandals", "Idols", "Decorations", "Cultural Events", "Street Celebrations", "Traditional Art"
+  "All",
+  "Pandals",
+  "Idols",
+  "Decorations",
+  "Cultural Events",
+  "Street Celebrations",
+  "Traditional Art",
 ];
 
 const galleryImages = [
@@ -34,7 +40,7 @@ const galleryImages = [
     area: "Kumartuli",
     year: "2024",
     likes: 1234,
-    views: 5670
+    views: 5670,
   },
   {
     id: 2,
@@ -46,7 +52,7 @@ const galleryImages = [
     area: "Shyambazar",
     year: "2024",
     likes: 987,
-    views: 4321
+    views: 4321,
   },
   {
     id: 3,
@@ -58,7 +64,7 @@ const galleryImages = [
     area: "Belgachia",
     year: "2024",
     likes: 756,
-    views: 3210
+    views: 3210,
   },
   {
     id: 4,
@@ -70,7 +76,7 @@ const galleryImages = [
     area: "Kalighat",
     year: "2024",
     likes: 1098,
-    views: 6543
+    views: 6543,
   },
   {
     id: 5,
@@ -82,7 +88,7 @@ const galleryImages = [
     area: "Sovabazar",
     year: "2024",
     likes: 654,
-    views: 2876
+    views: 2876,
   },
   {
     id: 6,
@@ -94,7 +100,7 @@ const galleryImages = [
     area: "Bhawanipur",
     year: "2024",
     likes: 1567,
-    views: 8765
+    views: 8765,
   },
   {
     id: 7,
@@ -106,7 +112,7 @@ const galleryImages = [
     area: "Salt Lake",
     year: "2024",
     likes: 432,
-    views: 1987
+    views: 1987,
   },
   {
     id: 8,
@@ -118,7 +124,7 @@ const galleryImages = [
     area: "Ballygunge",
     year: "2024",
     likes: 789,
-    views: 3654
+    views: 3654,
   },
   {
     id: 9,
@@ -130,31 +136,32 @@ const galleryImages = [
     area: "Tollygunge",
     year: "2024",
     likes: 1234,
-    views: 5432
-  }
+    views: 5432,
+  },
 ];
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  
+
   const heroRef = useRef(null);
   const statsRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true });
   const isStatsInView = useInView(statsRef, { once: true });
 
-  const filteredImages = selectedCategory === "All" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === selectedCategory);
+  const filteredImages =
+    selectedCategory === "All"
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === selectedCategory);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -165,13 +172,13 @@ export default function Gallery() {
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
   const handleSubmitPhotos = () => {
-    window.open('https://forms.gle/JJVNgcvr3hcFXZLz8', '_blank');
+    window.open("https://forms.gle/JJVNgcvr3hcFXZLz8", "_blank");
   };
 
   return (
@@ -211,7 +218,10 @@ export default function Gallery() {
             <motion.div
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: isHeroInView ? 0 : 20, opacity: isHeroInView ? 1 : 0 }}
+              animate={{
+                y: isHeroInView ? 0 : 20,
+                opacity: isHeroInView ? 1 : 0,
+              }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Badge className="bg-white/20 text-white border-white/30 text-lg px-6 py-3 shadow-glow">
@@ -223,7 +233,10 @@ export default function Gallery() {
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
               initial={{ y: 30, opacity: 0 }}
-              animate={{ y: isHeroInView ? 0 : 30, opacity: isHeroInView ? 1 : 0 }}
+              animate={{
+                y: isHeroInView ? 0 : 30,
+                opacity: isHeroInView ? 1 : 0,
+              }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <span className="bg-gradient-to-r from-white via-festival-gold to-white bg-clip-text text-transparent">
@@ -242,17 +255,24 @@ export default function Gallery() {
             <motion.p
               className="text-lg sm:text-xl md:text-2xl mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto"
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: isHeroInView ? 0 : 20, opacity: isHeroInView ? 1 : 0 }}
+              animate={{
+                y: isHeroInView ? 0 : 20,
+                opacity: isHeroInView ? 1 : 0,
+              }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Experience the visual splendor of Kolkata's most magnificent Durga Puja pandals, 
-              artistic idols, and vibrant celebrations through our curated photo collection.
+              Experience the visual splendor of Kolkata's most magnificent Durga
+              Puja pandals, artistic idols, and vibrant celebrations through our
+              curated photo collection.
             </motion.p>
 
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: isHeroInView ? 0 : 20, opacity: isHeroInView ? 1 : 0 }}
+              animate={{
+                y: isHeroInView ? 0 : 20,
+                opacity: isHeroInView ? 1 : 0,
+              }}
               transition={{ duration: 0.8, delay: 1 }}
             >
               <motion.div
@@ -304,13 +324,13 @@ export default function Gallery() {
                 color: "from-festival-orange to-festival-saffron",
               },
               {
-                value: new Set(galleryImages.map(img => img.category)).size,
+                value: new Set(galleryImages.map((img) => img.category)).size,
                 label: "Categories",
                 icon: <Filter className="w-8 h-8" />,
                 color: "from-festival-gold to-festival-amber",
               },
               {
-                value: new Set(galleryImages.map(img => img.area)).size,
+                value: new Set(galleryImages.map((img) => img.area)).size,
                 label: "Areas",
                 icon: <MapPin className="w-8 h-8" />,
                 color: "from-blue-500 to-indigo-600",
@@ -326,7 +346,10 @@ export default function Gallery() {
                 key={index}
                 className="text-center p-6 bg-white rounded-2xl shadow-festival hover:shadow-festival-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: isStatsInView ? 1 : 0, y: isStatsInView ? 0 : 30 }}
+                animate={{
+                  opacity: isStatsInView ? 1 : 0,
+                  y: isStatsInView ? 0 : 30,
+                }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
               >
@@ -337,7 +360,9 @@ export default function Gallery() {
                 >
                   {stat.icon}
                 </motion.div>
-                <div className="text-3xl font-bold text-gray-800 mb-2">{stat.value}</div>
+                <div className="text-3xl font-bold text-gray-800 mb-2">
+                  {stat.value}
+                </div>
                 <p className="text-gray-600 font-medium">{stat.label}</p>
               </motion.div>
             ))}
@@ -356,8 +381,12 @@ export default function Gallery() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Browse by Category</h2>
-              <p className="text-gray-600">Filter photos by different aspects of Durga Puja celebrations</p>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                Browse by Category
+              </h2>
+              <p className="text-gray-600">
+                Filter photos by different aspects of Durga Puja celebrations
+              </p>
             </motion.div>
 
             <motion.div
@@ -374,7 +403,9 @@ export default function Gallery() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
-                    variant={selectedCategory === category ? "default" : "outline"}
+                    variant={
+                      selectedCategory === category ? "default" : "outline"
+                    }
                     onClick={() => setSelectedCategory(category)}
                     className={`${
                       selectedCategory === category
@@ -420,15 +451,19 @@ export default function Gallery() {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
+
                       {/* Overlay Info */}
                       <motion.div
                         className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         initial={{ y: 20 }}
                         whileHover={{ y: 0 }}
                       >
-                        <h3 className="font-bold text-lg mb-1">{image.title}</h3>
-                        <p className="text-sm opacity-90 mb-2">{image.description}</p>
+                        <h3 className="font-bold text-lg mb-1">
+                          {image.title}
+                        </h3>
+                        <p className="text-sm opacity-90 mb-2">
+                          {image.description}
+                        </p>
                         <div className="flex items-center gap-4 text-xs">
                           <div className="flex items-center gap-1">
                             <Eye className="w-3 h-3" />
@@ -462,7 +497,9 @@ export default function Gallery() {
 
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-bold text-lg text-gray-800">{image.title}</h3>
+                        <h3 className="font-bold text-lg text-gray-800">
+                          {image.title}
+                        </h3>
                         <Badge className="bg-festival-orange/10 text-festival-orange">
                           {image.category}
                         </Badge>
@@ -532,21 +569,22 @@ export default function Gallery() {
                 className="text-6xl mb-6"
                 animate={{
                   scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0]
+                  rotate: [0, 5, -5, 0],
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
                 📸
               </motion.div>
-              
+
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Share Your Durga Puja Moments
               </h2>
-              
+
               <p className="text-xl mb-8 text-white/90 leading-relaxed">
-                Have amazing photos from this year's Durga Puja? Share them with our community! 
-                Your photos could be featured in our gallery and help others experience the 
-                beauty of Kolkata's grandest festival.
+                Have amazing photos from this year's Durga Puja? Share them with
+                our community! Your photos could be featured in our gallery and
+                help others experience the beauty of Kolkata's grandest
+                festival.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -564,7 +602,7 @@ export default function Gallery() {
                     <ExternalLink className="w-5 h-5 ml-2" />
                   </Button>
                 </motion.div>
-                
+
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -584,7 +622,8 @@ export default function Gallery() {
                 <p>
                   ✨ All submissions are reviewed before publication
                   <br />
-                  📱 High-quality photos preferred • 🎨 Creative compositions welcome
+                  📱 High-quality photos preferred • 🎨 Creative compositions
+                  welcome
                 </p>
               </div>
             </div>

@@ -124,9 +124,9 @@ export default function Header() {
             >
               <motion.div
                 className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex items-center justify-center shadow-xl overflow-hidden flex-shrink-0"
-                whileHover={{ 
+                whileHover={{
                   boxShadow: "0 0 30px rgba(255, 215, 0, 0.8)",
-                  scale: 1.1
+                  scale: 1.1,
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -136,18 +136,18 @@ export default function Header() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 />
-                
+
                 {/* Pulsing ring */}
                 <motion.div
                   className="absolute inset-0 border-2 border-festival-gold rounded-full"
                   animate={{ scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                
+
                 <span className="text-festival-orange text-xl sm:text-2xl font-bold relative z-10">
                   দু
                 </span>
-                
+
                 {/* Floating sparkles */}
                 {[...Array(3)].map((_, i) => (
                   <motion.div
@@ -156,8 +156,8 @@ export default function Header() {
                     animate={{
                       scale: [0, 1, 0],
                       opacity: [0, 1, 0],
-                      x: [0, Math.cos(i * 120 * Math.PI / 180) * 20],
-                      y: [0, Math.sin(i * 120 * Math.PI / 180) * 20],
+                      x: [0, Math.cos((i * 120 * Math.PI) / 180) * 20],
+                      y: [0, Math.sin((i * 120 * Math.PI) / 180) * 20],
                     }}
                     transition={{
                       duration: 2,
@@ -170,7 +170,7 @@ export default function Header() {
                   </motion.div>
                 ))}
               </motion.div>
-              
+
               <div className="text-white min-w-0">
                 <motion.h1
                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white via-festival-gold to-white bg-clip-text text-transparent truncate"
@@ -190,7 +190,11 @@ export default function Header() {
                   </p>
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <Crown className="w-3 h-3 text-festival-gold hidden sm:block" />
                   </motion.div>
@@ -220,7 +224,7 @@ export default function Header() {
                     whileHover={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.2 }}
                   />
-                  
+
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-festival-gold/20 to-festival-amber/20 rounded-xl opacity-0 group-hover:opacity-100"
                     initial={{ x: "-100%" }}
@@ -240,7 +244,7 @@ export default function Header() {
                   <span className="relative z-10 flex items-center gap-2">
                     <span className="text-xs opacity-80">{item.icon}</span>
                     <span>{item.name}</span>
-                    
+
                     {/* Hover star */}
                     <motion.div
                       initial={{ opacity: 0, x: -10 }}
@@ -253,7 +257,7 @@ export default function Header() {
                 </Link>
               </motion.div>
             ))}
-            
+
             {/* Special CTA Button */}
             <motion.div
               className="ml-4"
@@ -372,13 +376,13 @@ export default function Header() {
       {/* Enhanced Decorative bottom glow */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-festival-gold to-transparent opacity-50"
-        animate={{ 
+        animate={{
           opacity: [0.3, 0.7, 0.3],
-          scaleX: [0.8, 1, 0.8]
+          scaleX: [0.8, 1, 0.8],
         }}
         transition={{ duration: 3, repeat: Infinity }}
       />
-      
+
       {/* Corner decorative elements */}
       <motion.div
         className="absolute top-2 right-4 text-festival-gold/30"
@@ -387,7 +391,7 @@ export default function Header() {
       >
         <Sparkles className="w-4 h-4" />
       </motion.div>
-      
+
       <motion.div
         className="absolute bottom-2 left-4 text-festival-gold/30"
         animate={{ rotate: -360, scale: [1, 1.1, 1] }}

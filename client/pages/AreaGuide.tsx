@@ -355,12 +355,12 @@ export default function AreaGuide() {
   };
 
   const handleBrowseAreas = () => {
-    areasRef.current?.scrollIntoView({ behavior: 'smooth' });
+    areasRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleQuickSearch = () => {
     searchRef.current?.focus();
-    searchRef.current?.scrollIntoView({ behavior: 'smooth' });
+    searchRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // Generate autocomplete suggestions
@@ -370,15 +370,20 @@ export default function AreaGuide() {
     const allItems = [];
 
     // Add area names
-    areaData.forEach(area => {
+    areaData.forEach((area) => {
       if (area.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-        allItems.push({ type: 'area', name: area.name, zone: area.zone });
+        allItems.push({ type: "area", name: area.name, zone: area.zone });
       }
 
       // Add pandal names
-      area.pandals.forEach(pandal => {
+      area.pandals.forEach((pandal) => {
         if (pandal.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-          allItems.push({ type: 'pandal', name: pandal.name, area: area.name, zone: area.zone });
+          allItems.push({
+            type: "pandal",
+            name: pandal.name,
+            area: area.name,
+            zone: area.zone,
+          });
         }
       });
     });
@@ -395,7 +400,7 @@ export default function AreaGuide() {
   const handleSuggestionClick = (suggestion: any) => {
     setSearchTerm(suggestion.name);
     setShowSuggestions(false);
-    if (suggestion.type === 'area') {
+    if (suggestion.type === "area") {
       setSelectedZone(suggestion.zone);
     }
   };
@@ -404,25 +409,25 @@ export default function AreaGuide() {
     if (!showSuggestions) return;
 
     switch (e.key) {
-      case 'ArrowDown':
+      case "ArrowDown":
         e.preventDefault();
-        setActiveSuggestion(prev =>
-          prev < suggestions.length - 1 ? prev + 1 : 0
+        setActiveSuggestion((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : 0,
         );
         break;
-      case 'ArrowUp':
+      case "ArrowUp":
         e.preventDefault();
-        setActiveSuggestion(prev =>
-          prev > 0 ? prev - 1 : suggestions.length - 1
+        setActiveSuggestion((prev) =>
+          prev > 0 ? prev - 1 : suggestions.length - 1,
         );
         break;
-      case 'Enter':
+      case "Enter":
         e.preventDefault();
         if (activeSuggestion >= 0) {
           handleSuggestionClick(suggestions[activeSuggestion]);
         }
         break;
-      case 'Escape':
+      case "Escape":
         setShowSuggestions(false);
         setActiveSuggestion(-1);
         break;
@@ -703,7 +708,9 @@ export default function AreaGuide() {
                   onChange={(e) => handleSearchChange(e.target.value)}
                   onKeyDown={handleKeyDown}
                   onFocus={() => setShowSuggestions(searchTerm.length > 0)}
-                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                  onBlur={() =>
+                    setTimeout(() => setShowSuggestions(false), 200)
+                  }
                   className="pl-10 sm:pl-12 h-12 sm:h-14 border-2 border-festival-orange/30 focus:border-festival-orange rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-festival transition-all duration-300 bg-white/80 backdrop-blur-sm"
                 />
 
@@ -722,8 +729,8 @@ export default function AreaGuide() {
                           key={`${suggestion.type}-${suggestion.name}`}
                           className={`p-3 cursor-pointer transition-colors duration-200 ${
                             index === activeSuggestion
-                              ? 'bg-festival-orange/10 border-l-4 border-festival-orange'
-                              : 'hover:bg-festival-orange/5 border-l-4 border-transparent'
+                              ? "bg-festival-orange/10 border-l-4 border-festival-orange"
+                              : "hover:bg-festival-orange/5 border-l-4 border-transparent"
                           }`}
                           onClick={() => handleSuggestionClick(suggestion)}
                           whileHover={{ x: 2 }}
@@ -733,7 +740,7 @@ export default function AreaGuide() {
                               <div className="font-medium text-gray-800">
                                 {suggestion.name}
                               </div>
-                              {suggestion.type === 'pandal' && (
+                              {suggestion.type === "pandal" && (
                                 <div className="text-sm text-gray-500">
                                   in {suggestion.area}
                                 </div>
@@ -742,9 +749,9 @@ export default function AreaGuide() {
                             <div className="flex gap-2">
                               <Badge
                                 className={`text-xs ${
-                                  suggestion.type === 'area'
-                                    ? 'bg-festival-saffron/20 text-festival-saffron-dark'
-                                    : 'bg-blue-100 text-blue-800'
+                                  suggestion.type === "area"
+                                    ? "bg-festival-saffron/20 text-festival-saffron-dark"
+                                    : "bg-blue-100 text-blue-800"
                                 }`}
                               >
                                 {suggestion.type}
@@ -884,7 +891,10 @@ export default function AreaGuide() {
       </motion.section>
 
       {/* Areas List */}
-      <section ref={areasRef} className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
+      <section
+        ref={areasRef}
+        className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50"
+      >
         <div className="container mx-auto mobile-safe">
           <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 mobile-container">
             <AnimatePresence>
