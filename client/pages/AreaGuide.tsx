@@ -351,6 +351,15 @@ export default function AreaGuide() {
     );
   };
 
+  const handleBrowseAreas = () => {
+    areasRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleQuickSearch = () => {
+    searchRef.current?.focus();
+    searchRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const totalPandals = areaData.reduce(
     (total, area) => total + area.pandals.length,
     0,
