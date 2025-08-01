@@ -503,6 +503,7 @@ export default function AreaGuide() {
               >
                 <Button
                   size="lg"
+                  onClick={handleBrowseAreas}
                   className="bg-white text-festival-orange hover:bg-gray-100 text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-4 sm:py-6 shadow-festival-lg font-bold w-full sm:w-auto"
                 >
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -516,6 +517,7 @@ export default function AreaGuide() {
                 <Button
                   size="lg"
                   variant="outline"
+                  onClick={handleQuickSearch}
                   className="border-2 border-white text-white hover:bg-white/10 text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-4 sm:py-6 backdrop-blur-sm font-bold w-full sm:w-auto"
                 >
                   <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
