@@ -321,9 +321,14 @@ export default function AreaGuide() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedZone, setSelectedZone] = useState("All");
   const [openAreas, setOpenAreas] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
 
   const heroRef = useRef(null);
   const statsRef = useRef(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const areasRef = useRef<HTMLDivElement>(null);
+  const suggestionsRef = useRef<HTMLDivElement>(null);
   const isHeroInView = useInView(heroRef, { once: true });
   const isStatsInView = useInView(statsRef, { once: true });
 
@@ -347,6 +352,86 @@ export default function AreaGuide() {
         ? prev.filter((name) => name !== areaName)
         : [...prev, areaName],
     );
+  };
+
+  const handleBrowseAreas = () => {
+    areasRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleQuickSearch = () => {
+    searchRef.current?.focus();
+    searchRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Generate autocomplete suggestions
+  const suggestions = useMemo(() => {
+    if (searchTerm.length < 1) return [];
+
+    const allItems = [];
+
+    // Add area names
+    areaData.forEach((area) => {
+      if (area.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        allItems.push({ type: "area", name: area.name, zone: area.zone });
+      }
+
+      // Add pandal names
+      area.pandals.forEach((pandal) => {
+        if (pandal.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          allItems.push({
+            type: "pandal",
+            name: pandal.name,
+            area: area.name,
+            zone: area.zone,
+          });
+        }
+      });
+    });
+
+    return allItems.slice(0, 8); // Limit to 8 suggestions
+  }, [searchTerm]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setShowSuggestions(value.length > 0);
+    setActiveSuggestion(-1);
+  };
+
+  const handleSuggestionClick = (suggestion: any) => {
+    setSearchTerm(suggestion.name);
+    setShowSuggestions(false);
+    if (suggestion.type === "area") {
+      setSelectedZone(suggestion.zone);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!showSuggestions) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setActiveSuggestion((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : 0,
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setActiveSuggestion((prev) =>
+          prev > 0 ? prev - 1 : suggestions.length - 1,
+        );
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (activeSuggestion >= 0) {
+          handleSuggestionClick(suggestions[activeSuggestion]);
+        }
+        break;
+      case "Escape":
+        setShowSuggestions(false);
+        setActiveSuggestion(-1);
+        break;
+    }
   };
 
   const totalPandals = areaData.reduce(
@@ -492,6 +577,7 @@ export default function AreaGuide() {
               >
                 <Button
                   size="lg"
+                  onClick={handleBrowseAreas}
                   className="bg-white text-festival-orange hover:bg-gray-100 text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-4 sm:py-6 shadow-festival-lg font-bold w-full sm:w-auto"
                 >
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -505,6 +591,7 @@ export default function AreaGuide() {
                 <Button
                   size="lg"
                   variant="outline"
+                  onClick={handleQuickSearch}
                   className="border-2 border-white text-white hover:bg-white/10 text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-4 sm:py-6 backdrop-blur-sm font-bold w-full sm:w-auto"
                 >
                   <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -613,13 +700,72 @@ export default function AreaGuide() {
                 whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.2 }}
               >
-                <Search className="absolute left-3 sm:left-4 top-3 sm:top-4 h-4 w-4 sm:h-5 sm:w-5 text-festival-orange animate-bounce-gentle" />
+                <Search className="absolute left-3 sm:left-4 top-3 sm:top-4 h-4 w-4 sm:h-5 sm:w-5 text-festival-orange animate-bounce-gentle z-10" />
                 <Input
+                  ref={searchRef}
                   placeholder="Search areas or pandals..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  onFocus={() => setShowSuggestions(searchTerm.length > 0)}
+                  onBlur={() =>
+                    setTimeout(() => setShowSuggestions(false), 200)
+                  }
                   className="pl-10 sm:pl-12 h-12 sm:h-14 border-2 border-festival-orange/30 focus:border-festival-orange rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-festival transition-all duration-300 bg-white/80 backdrop-blur-sm"
                 />
+
+                {/* Autocomplete Suggestions */}
+                <AnimatePresence>
+                  {showSuggestions && suggestions.length > 0 && (
+                    <motion.div
+                      ref={suggestionsRef}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute top-full left-0 right-0 bg-white border-2 border-festival-orange/30 rounded-lg sm:rounded-xl shadow-festival-lg mt-2 z-50 overflow-hidden backdrop-blur-sm"
+                    >
+                      {suggestions.map((suggestion, index) => (
+                        <motion.div
+                          key={`${suggestion.type}-${suggestion.name}`}
+                          className={`p-3 cursor-pointer transition-colors duration-200 ${
+                            index === activeSuggestion
+                              ? "bg-festival-orange/10 border-l-4 border-festival-orange"
+                              : "hover:bg-festival-orange/5 border-l-4 border-transparent"
+                          }`}
+                          onClick={() => handleSuggestionClick(suggestion)}
+                          whileHover={{ x: 2 }}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="font-medium text-gray-800">
+                                {suggestion.name}
+                              </div>
+                              {suggestion.type === "pandal" && (
+                                <div className="text-sm text-gray-500">
+                                  in {suggestion.area}
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex gap-2">
+                              <Badge
+                                className={`text-xs ${
+                                  suggestion.type === "area"
+                                    ? "bg-festival-saffron/20 text-festival-saffron-dark"
+                                    : "bg-blue-100 text-blue-800"
+                                }`}
+                              >
+                                {suggestion.type}
+                              </Badge>
+                              <Badge className={getZoneColor(suggestion.zone)}>
+                                {suggestion.zone}
+                              </Badge>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
               <motion.select
                 value={selectedZone}
@@ -745,7 +891,10 @@ export default function AreaGuide() {
       </motion.section>
 
       {/* Areas List */}
-      <section className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
+      <section
+        ref={areasRef}
+        className="mobile-spacing lg:py-16 bg-gradient-to-br from-orange-50 to-yellow-50"
+      >
         <div className="container mx-auto mobile-safe">
           <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 mobile-container">
             <AnimatePresence>
