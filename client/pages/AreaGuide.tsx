@@ -628,6 +628,7 @@ export default function AreaGuide() {
               >
                 <Search className="absolute left-3 sm:left-4 top-3 sm:top-4 h-4 w-4 sm:h-5 sm:w-5 text-festival-orange animate-bounce-gentle" />
                 <Input
+                  ref={searchRef}
                   placeholder="Search areas or pandals..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
