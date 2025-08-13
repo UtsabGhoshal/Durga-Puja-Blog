@@ -298,6 +298,39 @@ export default function Index() {
                 </Link>
               </motion.div>
             </motion.div>
+
+            {/* Quick Navigation Links */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4 sm:px-0 mt-8"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{
+                y: isHeroInView ? 0 : 30,
+                opacity: isHeroInView ? 1 : 0,
+              }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              {[
+                { label: "History", link: "/history", icon: "📚" },
+                { label: "Bonedi Baris", link: "/bonedi-baris", icon: "🏛️" },
+                { label: "Area Guide", link: "/area-guide", icon: "🗺️" },
+                { label: "Metro Routes", link: "/metro-routes", icon: "🚇" },
+                { label: "Blog", link: "/blog", icon: "✍️" },
+              ].map((item, index) => (
+                <Link key={index} to={item.link}>
+                  <motion.div
+                    className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 text-white hover:bg-white/30 transition-all duration-300 cursor-pointer text-sm font-medium"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                  >
+                    <span className="mr-2">{item.icon}</span>
+                    {item.label}
+                  </motion.div>
+                </Link>
+              ))}
+            </motion.div>
           </div>
         </div>
 
@@ -794,7 +827,7 @@ export default function Index() {
                       animate={{ opacity: [1, 0.8, 1] }}
                       transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
                     >
-                      শরণ্যে ত্র্যম্বকে গৌরি নারায়ণি নমোস্তুতে
+                      শরণ্যে ��্র্যম্বকে গৌরি নারায়ণি নমোস্তুতে
                     </motion.p>
                   </div>
                   <div className="mt-8 flex justify-center">
