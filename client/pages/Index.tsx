@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import MahalayaCountdown from "@/components/MahalayaCountdown";
 
 export default function Index() {
   const heroRef = useRef(null);
@@ -73,6 +74,75 @@ export default function Index() {
       hoverColor: "from-festival-maroon-light to-red-600",
       image:
         "https://images.pexels.com/photos/31739353/pexels-photo-31739353.jpeg",
+    },
+  ];
+
+  const navigationSections = [
+    {
+      title: "About Durga Puja",
+      link: "/about",
+      icon: <Heart className="w-5 h-5" />,
+      description: "Learn about the festival",
+    },
+    {
+      title: "History & Mythology",
+      link: "/history",
+      icon: <BookOpen className="w-5 h-5" />,
+      description: "Ancient stories & origins",
+    },
+    {
+      title: "Rituals & Traditions",
+      link: "/rituals",
+      icon: <Sparkles className="w-5 h-5" />,
+      description: "Sacred ceremonies",
+    },
+    {
+      title: "Photo Gallery",
+      link: "/gallery",
+      icon: <Camera className="w-5 h-5" />,
+      description: "Visual celebrations",
+    },
+    {
+      title: "Bonedi Baris",
+      link: "/bonedi-baris",
+      icon: <Crown className="w-5 h-5" />,
+      description: "Heritage houses",
+    },
+    {
+      title: "Area Guide",
+      link: "/area-guide",
+      icon: <MapPin className="w-5 h-5" />,
+      description: "Explore different areas",
+    },
+    {
+      title: "Metro Routes",
+      link: "/metro-routes",
+      icon: <Map className="w-5 h-5" />,
+      description: "Transportation guide",
+    },
+    {
+      title: "Owner's Plan",
+      link: "/owners-plan",
+      icon: <Users className="w-5 h-5" />,
+      description: "Personal journey",
+    },
+    {
+      title: "Blog Posts",
+      link: "/blog",
+      icon: <BookOpen className="w-5 h-5" />,
+      description: "Articles & insights",
+    },
+    {
+      title: "About Me",
+      link: "/about-me",
+      icon: <Users className="w-5 h-5" />,
+      description: "Know the author",
+    },
+    {
+      title: "Contact",
+      link: "/contact",
+      icon: <Heart className="w-5 h-5" />,
+      description: "Get in touch",
     },
   ];
 
@@ -283,6 +353,39 @@ export default function Index() {
                 </Link>
               </motion.div>
             </motion.div>
+
+            {/* Quick Navigation Links */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4 sm:px-0 mt-8"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{
+                y: isHeroInView ? 0 : 30,
+                opacity: isHeroInView ? 1 : 0,
+              }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              {[
+                { label: "History", link: "/history", icon: "📚" },
+                { label: "Bonedi Baris", link: "/bonedi-baris", icon: "🏛️" },
+                { label: "Area Guide", link: "/area-guide", icon: "🗺️" },
+                { label: "Metro Routes", link: "/metro-routes", icon: "🚇" },
+                { label: "Blog", link: "/blog", icon: "✍️" },
+              ].map((item, index) => (
+                <Link key={index} to={item.link}>
+                  <motion.div
+                    className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 text-white hover:bg-white/30 transition-all duration-300 cursor-pointer text-sm font-medium"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                  >
+                    <span className="mr-2">{item.icon}</span>
+                    {item.label}
+                  </motion.div>
+                </Link>
+              ))}
+            </motion.div>
           </div>
         </div>
 
@@ -303,6 +406,75 @@ export default function Index() {
             </div>
           </div>
         </motion.div>
+      </motion.section>
+
+      {/* Mahalaya Countdown Section */}
+      <motion.section
+        className="py-16 bg-gradient-to-br from-white via-festival-gold/5 to-festival-saffron/5 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4">
+          <MahalayaCountdown />
+        </div>
+      </motion.section>
+
+      {/* Navigation Menu Section */}
+      <motion.section
+        className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 via-festival-orange to-festival-saffron bg-clip-text text-transparent mb-6">
+              Explore Every Aspect
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Navigate through our comprehensive guide to Durga Puja in Kolkata
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+            {navigationSections.map((section, index) => (
+              <Link key={index} to={section.link}>
+                <motion.div
+                  className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-festival hover:shadow-festival-lg transition-all duration-300 border border-festival-orange/10 hover:border-festival-orange/30 text-center cursor-pointer h-full"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.div
+                    className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-festival-orange to-festival-saffron rounded-full text-white mb-3 group-hover:shadow-glow transition-all duration-300"
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {section.icon}
+                  </motion.div>
+                  <h3 className="font-semibold text-gray-800 group-hover:text-festival-orange transition-colors duration-300 text-sm md:text-base mb-2">
+                    {section.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {section.description}
+                  </p>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </motion.section>
 
       {/* Highlights Section */}
@@ -710,7 +882,7 @@ export default function Index() {
                       animate={{ opacity: [1, 0.8, 1] }}
                       transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
                     >
-                      শরণ্যে ত্র্যম্বকে গৌরি নারায়ণি নমোস্তুতে
+                      শরণ্যে ��্র্যম্বকে গৌরি নারায়ণি নমোস্তুতে
                     </motion.p>
                   </div>
                   <div className="mt-8 flex justify-center">
