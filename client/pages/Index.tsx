@@ -78,17 +78,72 @@ export default function Index() {
   ];
 
   const navigationSections = [
-    { title: "About Durga Puja", link: "/about", icon: <Heart className="w-5 h-5" />, description: "Learn about the festival" },
-    { title: "History & Mythology", link: "/history", icon: <BookOpen className="w-5 h-5" />, description: "Ancient stories & origins" },
-    { title: "Rituals & Traditions", link: "/rituals", icon: <Sparkles className="w-5 h-5" />, description: "Sacred ceremonies" },
-    { title: "Photo Gallery", link: "/gallery", icon: <Camera className="w-5 h-5" />, description: "Visual celebrations" },
-    { title: "Bonedi Baris", link: "/bonedi-baris", icon: <Crown className="w-5 h-5" />, description: "Heritage houses" },
-    { title: "Area Guide", link: "/area-guide", icon: <MapPin className="w-5 h-5" />, description: "Explore different areas" },
-    { title: "Metro Routes", link: "/metro-routes", icon: <Map className="w-5 h-5" />, description: "Transportation guide" },
-    { title: "Owner's Plan", link: "/owners-plan", icon: <Users className="w-5 h-5" />, description: "Personal journey" },
-    { title: "Blog Posts", link: "/blog", icon: <BookOpen className="w-5 h-5" />, description: "Articles & insights" },
-    { title: "About Me", link: "/about-me", icon: <Users className="w-5 h-5" />, description: "Know the author" },
-    { title: "Contact", link: "/contact", icon: <Heart className="w-5 h-5" />, description: "Get in touch" }
+    {
+      title: "About Durga Puja",
+      link: "/about",
+      icon: <Heart className="w-5 h-5" />,
+      description: "Learn about the festival",
+    },
+    {
+      title: "History & Mythology",
+      link: "/history",
+      icon: <BookOpen className="w-5 h-5" />,
+      description: "Ancient stories & origins",
+    },
+    {
+      title: "Rituals & Traditions",
+      link: "/rituals",
+      icon: <Sparkles className="w-5 h-5" />,
+      description: "Sacred ceremonies",
+    },
+    {
+      title: "Photo Gallery",
+      link: "/gallery",
+      icon: <Camera className="w-5 h-5" />,
+      description: "Visual celebrations",
+    },
+    {
+      title: "Bonedi Baris",
+      link: "/bonedi-baris",
+      icon: <Crown className="w-5 h-5" />,
+      description: "Heritage houses",
+    },
+    {
+      title: "Area Guide",
+      link: "/area-guide",
+      icon: <MapPin className="w-5 h-5" />,
+      description: "Explore different areas",
+    },
+    {
+      title: "Metro Routes",
+      link: "/metro-routes",
+      icon: <Map className="w-5 h-5" />,
+      description: "Transportation guide",
+    },
+    {
+      title: "Owner's Plan",
+      link: "/owners-plan",
+      icon: <Users className="w-5 h-5" />,
+      description: "Personal journey",
+    },
+    {
+      title: "Blog Posts",
+      link: "/blog",
+      icon: <BookOpen className="w-5 h-5" />,
+      description: "Articles & insights",
+    },
+    {
+      title: "About Me",
+      link: "/about-me",
+      icon: <Users className="w-5 h-5" />,
+      description: "Know the author",
+    },
+    {
+      title: "Contact",
+      link: "/contact",
+      icon: <Heart className="w-5 h-5" />,
+      description: "Get in touch",
+    },
   ];
 
   const highlights = [

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Clock } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Calendar, Clock } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface TimeLeft {
   days: number;
@@ -21,21 +21,21 @@ export default function MahalayaCountdown() {
 
   useEffect(() => {
     setIsClient(true);
-    
+
     const calculateTimeLeft = (): TimeLeft => {
       const now = new Date();
       const currentYear = now.getFullYear();
-      
+
       // Mahalaya is September 22nd
       let mahalayaDate = new Date(currentYear, 8, 22); // Month is 0-indexed
-      
+
       // If this year's Mahalaya has passed, calculate for next year
       if (now > mahalayaDate) {
         mahalayaDate = new Date(currentYear + 1, 8, 22);
       }
-      
+
       const difference = mahalayaDate.getTime() - now.getTime();
-      
+
       if (difference > 0) {
         return {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -44,7 +44,7 @@ export default function MahalayaCountdown() {
           seconds: Math.floor((difference / 1000) % 60),
         };
       }
-      
+
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     };
 
@@ -59,17 +59,37 @@ export default function MahalayaCountdown() {
   }, []);
 
   const timeUnits = [
-    { label: 'Days', value: timeLeft.days, color: 'from-festival-orange to-festival-saffron' },
-    { label: 'Hours', value: timeLeft.hours, color: 'from-festival-gold to-festival-amber' },
-    { label: 'Minutes', value: timeLeft.minutes, color: 'from-festival-vermillion to-festival-crimson' },
-    { label: 'Seconds', value: timeLeft.seconds, color: 'from-festival-maroon to-festival-maroon-light' },
+    {
+      label: "Days",
+      value: timeLeft.days,
+      color: "from-festival-orange to-festival-saffron",
+    },
+    {
+      label: "Hours",
+      value: timeLeft.hours,
+      color: "from-festival-gold to-festival-amber",
+    },
+    {
+      label: "Minutes",
+      value: timeLeft.minutes,
+      color: "from-festival-vermillion to-festival-crimson",
+    },
+    {
+      label: "Seconds",
+      value: timeLeft.seconds,
+      color: "from-festival-maroon to-festival-maroon-light",
+    },
   ];
 
   if (!isClient) {
     return null; // Prevent hydration mismatch
   }
 
-  const isCountdownActive = timeLeft.days > 0 || timeLeft.hours > 0 || timeLeft.minutes > 0 || timeLeft.seconds > 0;
+  const isCountdownActive =
+    timeLeft.days > 0 ||
+    timeLeft.hours > 0 ||
+    timeLeft.minutes > 0 ||
+    timeLeft.seconds > 0;
 
   return (
     <motion.div
@@ -104,10 +124,9 @@ export default function MahalayaCountdown() {
               </motion.div>
             </div>
             <p className="text-lg md:text-xl text-gray-700 font-medium">
-              {isCountdownActive 
-                ? "Countdown to Mahalaya - September 22nd" 
-                : "🎉 Mahalaya is here! শুভ মহালয়া! 🎉"
-              }
+              {isCountdownActive
+                ? "Countdown to Mahalaya - September 22nd"
+                : "🎉 Mahalaya is here! শুভ মহালয়া! 🎉"}
             </p>
           </motion.div>
 
@@ -125,17 +144,17 @@ export default function MahalayaCountdown() {
                   {/* Animated background */}
                   <motion.div
                     className="absolute inset-0 bg-white/10 rounded-2xl"
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.6, 0.3] 
+                      opacity: [0.3, 0.6, 0.3],
                     }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity, 
-                      delay: index * 0.5 
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.5,
                     }}
                   />
-                  
+
                   <motion.div
                     key={unit.value} // This will trigger animation on value change
                     className="relative z-10"
@@ -145,13 +164,17 @@ export default function MahalayaCountdown() {
                   >
                     <motion.div
                       className="text-3xl md:text-5xl font-bold mb-2"
-                      animate={unit.label === 'Seconds' ? { 
-                        scale: [1, 1.1, 1],
-                        color: ['#ffffff', '#ffd700', '#ffffff']
-                      } : {}}
+                      animate={
+                        unit.label === "Seconds"
+                          ? {
+                              scale: [1, 1.1, 1],
+                              color: ["#ffffff", "#ffd700", "#ffffff"],
+                            }
+                          : {}
+                      }
                       transition={{ duration: 1 }}
                     >
-                      {unit.value.toString().padStart(2, '0')}
+                      {unit.value.toString().padStart(2, "0")}
                     </motion.div>
                     <div className="text-sm md:text-base font-semibold uppercase tracking-wider opacity-90">
                       {unit.label}
@@ -160,7 +183,10 @@ export default function MahalayaCountdown() {
 
                   {/* Decorative corner elements */}
                   <div className="absolute top-2 right-2 w-3 h-3 bg-white/20 rounded-full animate-pulse" />
-                  <div className="absolute bottom-2 left-2 w-2 h-2 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                  <div
+                    className="absolute bottom-2 left-2 w-2 h-2 bg-white/30 rounded-full animate-pulse"
+                    style={{ animationDelay: "1s" }}
+                  />
                 </motion.div>
               ))}
             </div>
@@ -173,9 +199,9 @@ export default function MahalayaCountdown() {
             >
               <motion.div
                 className="text-6xl md:text-8xl mb-4"
-                animate={{ 
+                animate={{
                   rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1] 
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -191,19 +217,19 @@ export default function MahalayaCountdown() {
           )}
 
           {/* Decorative elements */}
-          <motion.div 
+          <motion.div
             className="absolute top-4 left-4 w-8 h-8 bg-festival-gold/30 rounded-full blur-sm"
-            animate={{ 
+            animate={{
               scale: [1, 1.5, 1],
-              opacity: [0.3, 0.7, 0.3] 
+              opacity: [0.3, 0.7, 0.3],
             }}
             transition={{ duration: 4, repeat: Infinity }}
           />
-          <motion.div 
+          <motion.div
             className="absolute bottom-4 right-4 w-6 h-6 bg-festival-orange/40 rounded-full blur-sm"
-            animate={{ 
+            animate={{
               scale: [1, 1.3, 1],
-              opacity: [0.4, 0.8, 0.4] 
+              opacity: [0.4, 0.8, 0.4],
             }}
             transition={{ duration: 3, repeat: Infinity, delay: 1 }}
           />
